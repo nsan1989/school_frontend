@@ -1,0 +1,43 @@
+.nav-link {
+    color: #654321 !important;
+    position: relative;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color:#008000;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+  .nav-item .dropdown-toggle::after {
+    content: '';
+    display: inline-block;
+    border: none;
+    font-family: "Poppins", sans-serif;
+}
+
+s.accountLogin {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-link {
+    color: #654321 !important;
+    position: relative;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+  }
+}

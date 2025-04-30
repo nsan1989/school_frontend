@@ -1,0 +1,31 @@
+.footerWrapper {
+    background-color: #008000;
+    color: #f8f1e7;
+    margin-top: auto;
+}
+
+.footerTitle {
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.footerLinks {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.footerText {
+    text-align: justify;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+}
+
+.footerLink {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #f8f1e7;
+}

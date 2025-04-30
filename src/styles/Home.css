@@ -1,0 +1,113 @@
+.featureWrapper,
+.achieveWrapper {
+    background-image: url("../assets/parallex_bg.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.featureContainer,
+.achieveContainer {
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.7);
+}
+
+.principalMessage h3{
+  font-family: "Open Sans", sans-serif;
+  color: #654321;
+}
+
+.principalMessage h4 div p span {
+  font-family: "Poppins", sans-serif;
+  color: #654321;
+}
+
+.noticeHeader,
+.noticeBody {
+    font-family: "Poppins", sans-serif;
+    color: #3D2B1F ;
+}
+
+.noticeWrapper,
+.testimonialWrapper {
+    background-color: #f8f1e7;
+    padding: 40px 0;
+  }
+  
+  .contentBox {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+  }
+  
+  .contentBox:hover {
+    transform: translateY(-5px);
+  }
+  
+  .sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .sectionHeader h3 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    color: #ab7519;
+    margin: 0;
+  }
+  
+  .sectionHeader a {
+    text-decoration: none;
+    color: #3d2b1f;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .sectionHeader a:hover {
+    color: #ab7519;
+  }
+  
+  hr {
+    border: none;
+    height: 2px;
+    background: #3d2b1f;
+    margin: 10px 0;
+  }
+  
+  .scrollableContent {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 400px; 
+    padding-right: 10px;
+  }
+  
+  .scrollableContent::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollableContent::-webkit-scrollbar-thumb {
+    background-color: #ab7519;
+    border-radius: 10px;
+  }
+  
+  .scrollableContent::-webkit-scrollbar-track {
+    background: #f1e6d4;
+  }
+  
+  @media (max-width: 768px) {
+    .contentBox {
+      height: auto;
+    }
+  
+    .scrollableContent {
+      max-height: 300px;
+    }
+  }
+  

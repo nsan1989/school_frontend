@@ -1,0 +1,13 @@
+.text-uppercase,
+.h5Content {
+    font-family: "Open Sans", sans-serif;
+    color: #3D2B1F;
+}
+
+.h4Content,
+.pContent,
+.ulContent li span {
+    font-family: "Poppins", sans-serif;
+    color: #3D2B1F;
+    text-align: justify;
+}
