@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import parse, { domToReact } from "html-react-parser";
-import { Row, Col, Image } from "react-bootstrap";
+import { Row, Col, Image, Container } from "react-bootstrap";
 import useSchoolInfo from "../hooks/SchoolInfo";
+import SchoolCard from "../components/Card.jsx";
 
 import "../styles/AboutDetail.css";
 
@@ -54,63 +55,48 @@ export default function AboutDetail() {
           });
           return (
             <div key={index}>
-              <Row className="py-3">
-                <Col
-                  xs={12}
-                  sm={12}
-                  md={6}
-                  lg={6}
-                  xl={6}
-                  style={{ textAlign: "justify" }}
-                >
-                  <div className="h4Content">
-                    {elements.h4.map((content, i) => (
-                      <h4 key={i} style={{
-                        fontFamily:"Poppins, sans-serif",
-                        color:"#654321",
-                        fontSize: "1rem"
-                      }}>{content}</h4>
-                    ))}
-                  </div>
-                </Col>
-                <Col
-                  xs={12}
-                  sm={12}
-                  md={6}
-                  lg={6}
-                  xl={6}
-                  className="d-flex justify-content-center"
-                >
-                  <div className="schoolLogo">
-                    {error && <p>{error}</p>}
-                    {schoolInfo?.Image && (
-                      <Image
-                        className="img-fluid"
-                        src={`${baseUrl}${schoolInfo.Image}`}
-                        alt={schoolInfo.school_name}
-                      />
-                    )}
-                  </div>
-                </Col>
-              </Row>
-              <div className="h5Content">
-                {elements.h5.map((content, i) => (
-                  <h5 className="text-uppercase" key={i}>
-                    {content}
-                  </h5>
-                ))}
-              </div>
-              &nbsp;
-              <div className="ulContent">
-                {elements.ul.map((content, i) => (
-                  <ul key={i}>{content}</ul>
-                ))}
-              </div>
-              <div className="pContent">
-                {elements.p.map((content, i) => (
-                  <p key={i}>{content}</p>
-                ))}
-              </div>
+              <Container>
+                <Row className="py-3 mb-3">
+                  <Col xs={12} sm={12} md={4} lg={4} xl={4}>
+                    <div className="sectionTitle">
+                      <h3
+                        style={{
+                          fontWeight: "bold",
+                          fontFamily: "Open Sans, sans-serif",
+                          fontSize: "2rem",
+                          color: "#654321",
+                        }}
+                      >
+                        St.Anthony's History
+                      </h3>
+                    </div>
+                  </Col>
+                  <Col
+                    xs={12}
+                    sm={12}
+                    md={8}
+                    lg={8}
+                    xl={8}
+                    style={{ textAlign: "justify" }}
+                  >
+                    <div className="h4Content">
+                      {elements.h4.map((content, i) => (
+                        <h4
+                          key={i}
+                          style={{
+                            fontFamily: "Poppins, sans-serif",
+                            color: "#654321",
+                            fontSize: "0.9rem",
+                            fontStyle: "normal",
+                          }}
+                        >
+                          {content}
+                        </h4>
+                      ))}
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
             </div>
           );
         })

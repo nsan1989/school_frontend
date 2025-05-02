@@ -1,0 +1,12 @@
+.principalMessages h3 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #008000;
+}
+
+.principalMessages p {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    color: #654321;
+}

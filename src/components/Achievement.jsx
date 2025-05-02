@@ -26,22 +26,6 @@ export default function Achievement() {
   }, []);
   return (
     <>
-      <div className="achieveTitle d-flex justify-content-center align-items-center mb-3">
-        <hr className="customHr2" />
-        &nbsp;
-        <h2
-          style={{
-            fontFamily: "Open Sans, sans-serif",
-            color: "#FFFFFF",
-            fontSize:"2rem",
-            fontWeight:"bold",
-          }}
-        >
-          ACHIEVEMENTS
-        </h2>
-        &nbsp;
-        <hr className="customHr2" />
-      </div>
       <Row className="justify-content-center">
         {error && <p className="text-danger">{error}</p>}
         {Array.isArray(achieve) && achieve.length > 0 ? (

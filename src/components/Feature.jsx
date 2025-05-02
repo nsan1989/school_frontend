@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, Image } from "react-bootstrap";
 
 export default function Feature() {
   const [feature, setFeature] = useState([]);
@@ -23,41 +23,18 @@ export default function Feature() {
   }, []);
   return (
     <>
-      <div className="fetureTitle d-flex justify-content-center align-items-center mb-3">
-        <hr className="customHr2" />
-        &nbsp;<h2 style={{
-          fontFamily: "Open Sans, sans-serif",
-          color:"#FFFFFF",
-          fontSize:"2rem",
-          fontWeight:"bold",
-          }}>FEATURES</h2>&nbsp;
-        <hr className="customHr2" />
-      </div>
       <Row className="justify-content-center">
         {error && <p className="text-danger">{error}</p>}
         {Array.isArray(feature) && feature.length > 0 ? (
           feature.map((features, index) => (
             <Col key={index} md={3} sm={6} xs={12} className="p-2">
-              <Card
-                className="featureCard h-100 p-3 text-center text-light d-flex flex-column justify-content-evenly"
-                style={{
-                  minHeight: "300px",
-                  backgroundColor: "rgba(255,255,255,0.8)",
-                }}
-              >
-                <Card.Img
-                  className="featureLogo mx-auto p-2"
-                  variant="top"
-                  src={`${baseUrl}${features.icon}`}
-                  style={{ maxWidth: "96px", height: "auto" }}
-                />
-                <Card.Body>
-                  <Card.Title style={{fontFamily:"Open Sans, sans-serif", fontSize:"1rem", color:"#008000", fontWeight:"bold"}}>
-                    {features.title}
-                  </Card.Title>
-                  <Card.Text style={{fontFamily:"Poppins, sans-serif", fontSize:"0.8rem", color:"#654321"}}>{features.content}</Card.Text>
-                </Card.Body>
-              </Card>
+              <div className="featureIcon">
+                <Image src={`${baseUrl}${features.icon}`} style={{ maxWidth: "56px", height: "auto" }} />
+              </div>
+              <div className="featureContent d-flex flex-column">
+                <div className="my-3 fw-bold" style={{fontFamily: "Open Sans, sans-serif", fontSize: "1rem", color: "#008000"}}>{features.title}</div>
+                <div style={{fontFamily: "Poppins, sans-serif", fontSize: "0.9rem"}}>{features.content}</div>
+              </div>
             </Col>
           ))
         ) : (

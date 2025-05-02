@@ -5,6 +5,8 @@ import Title from "../hooks/Title";
 import SlideUp from "../hooks/SlideUp";
 
 import "../styles/Common.css";
+import "../styles/Principal.css";
+
 import { FaRegUserCircle } from "react-icons/fa";
 
 export default function PrincipalMessage() {
@@ -72,7 +74,7 @@ export default function PrincipalMessage() {
                     xl={8}
                     className="d-flex justify-content-center align-items-center p-2"
                   >
-                    <div className="principalMessage">
+                    <div className="principalMessages">
                       {parse(message.message_info)}
                     </div>
                   </Col>

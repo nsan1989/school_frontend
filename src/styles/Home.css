@@ -13,14 +13,31 @@
     background-color: rgba(0,0,0, 0.7);
 }
 
-.principalMessage h3{
-  font-family: "Open Sans", sans-serif;
-  color: #654321;
+.principalContainer {
+  background-image: url("../assets/background_new2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.principalMessage h4 div p span {
+.principalMessage {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+}
+
+.principalMessage h3{
+  font-family: "Open Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.principalMessage h4 p {
   font-family: "Poppins", sans-serif;
-  color: #654321;
+  font-size: 0.9rem;
+  color: #cccccc;
 }
 
 .noticeHeader,

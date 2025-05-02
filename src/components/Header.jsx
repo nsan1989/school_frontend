@@ -47,6 +47,7 @@ const navLinks = [
 export default function Header() {
   const [expanded, setExpanded] = useState(false);
   const [navbarBg, setNavbarBg] = useState("rgba(255,255,255,0.9)");
+  const [navbarLinks, setNavbarLinks] = useState("#fff");
   const [hoveredDropdown, setHoveredDropdown] = useState(null);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
   const toggleNavbar = () => setExpanded((prev) => !prev);
@@ -59,8 +60,10 @@ export default function Header() {
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setNavbarBg("rgba(255, 255, 255, 0.9)");
+        setNavbarLinks("#654321")
       } else {
-        setNavbarBg("transparent");
+        setNavbarBg("rgba(0, 0, 0, 0.2)");
+        setNavbarLinks("#fff")
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -83,9 +86,9 @@ export default function Header() {
       expanded={expanded}
       style={{
         transition: "background-color 0.3s ease-in-out",
-        backgroundColor: isSmallScreen ? "#ffffff" : navbarBg,
+        backgroundColor: isSmallScreen ? "#fff" : navbarBg,
         backdropFilter:
-          !isSmallScreen && navbarBg !== "transparent" ? "blur(10px)" : "none",
+          !isSmallScreen && navbarBg !== "transparent" ? "blur(1px)" : "none",
         boxShadow:
           !isSmallScreen && navbarBg !== "transparent"
             ? "0px 4px 10px rgba(0,0,0,0.1)"
@@ -111,9 +114,8 @@ export default function Header() {
               &nbsp;
               <div
                 className="schoolName d-none d-md-flex"
-                style={{ color: "#654321", fontFamily:"Open Sans, sans-serif" }}
               >
-                <h5 style={{fontWeight:"bold"}}>{schoolInfo.school_name}</h5>
+                <h4 style={{color: navbarLinks}}>{schoolInfo.school_name}</h4>
               </div>
             </>
           )}
@@ -155,7 +157,7 @@ export default function Header() {
                       );
                     }
                   }}
-                  style={{ fontSize: "0.9rem" }}
+                  style={{ fontSize: "0.9rem", color: "#fffff" }}
                 >
                   {link.dropdown.map((item, idx) => (
                     <NavDropdown.Item
@@ -174,7 +176,7 @@ export default function Header() {
                   as={Link}
                   to={link.path}
                   onClick={closeNavbar}
-                  style={{ fontSize: "0.9rem" }}
+                  style={{ fontSize: "0.9rem", color: navbarLinks }}
                 >
                   {link.name}
                 </Nav.Link>

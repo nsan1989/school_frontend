@@ -14,7 +14,7 @@ export default function About() {
         </div>
       </div>
       <div className="aboutContent py-5">
-        <Container>
+        <Container fluid>
           <SlideUp>
             <AboutDetail />
           </SlideUp>

@@ -45,8 +45,9 @@ export default function Banner() {
                 <Carousel.Item key={index}>
                   <img
                     src={url}
-                    alt={`Banner ${index + 1}`}
                     className="img-fluid w-100 vh-100 object-fit-fill"
+                    effect="blur"
+                    placeholderSrc={url}
                   />
                 </Carousel.Item>
               ))}

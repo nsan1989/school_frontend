@@ -1,5 +1,15 @@
 import { useState, useEffect } from "react";
-import { Container, Row, Col, Image, Carousel, Card } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Image,
+  Carousel,
+  Card,
+  Button,
+} from "react-bootstrap";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import { Link } from "react-router-dom";
 import Banner from "../components/Carousel";
 import SchoolCard from "../components/Card";
@@ -20,6 +30,7 @@ export default function Home() {
   const [alumni, setAlumni] = useState([]);
   const [error, setError] = useState(null);
   const [imageError, setImageError] = useState(false);
+  const [key, setKey] = useState("health");
   const apiUrl = import.meta.env.VITE_ADMIN_API_URL;
   const baseUrl = import.meta.env.VITE_ADMIN_BASE_URL;
   const alumniUrl = import.meta.env.VITE_ALUMNI_API_URL;
@@ -74,26 +85,26 @@ export default function Home() {
   return (
     <>
       <Banner />
-      <div className="cardWrapper py-5" style={{ backgroundColor: "#f8f1e7" }}>
+      <div className="cardWrapper py-5" style={{ backgroundColor: "#fff" }}>
         <Container>
           <SlideUp>
             <SchoolCard />
           </SlideUp>
         </Container>
       </div>
-      <Container>
-        <FadeInSection>
-          <div className="messageWrapper py-5">
+      <Container fluid>
+        <SlideUp>
+          <div className="messageWrapper">
             {error && <p>{error}</p>}
             {adminMessage
               .filter((message) => message.id === 2)
               .map((message, index) => (
                 <Row key={index}>
                   <Col
-                    md={4}
-                    className="d-flex justify-content-center align-items-center p-2"
+                    md={5}
+                    className="d-flex justify-content-center align-items-center p-0"
                   >
-                    <div className="adminPhoto p-2">
+                    <div className="adminPhoto">
                       {imageError ? (
                         <FaRegUserCircle size={120} />
                       ) : (
@@ -108,10 +119,10 @@ export default function Home() {
                     </div>
                   </Col>
                   <Col
-                    md={8}
-                    className="d-flex justify-content-center align-items-center p-2"
+                    md={7}
+                    className="principalContainer d-flex justify-content-center align-items-center p-0"
                   >
-                    <div className="principalMessage p-2">
+                    <div className="principalMessage d-flex flex-column justify-content-center p-5">
                       {parse(
                         message.message_info
                           .split(" ")
@@ -120,31 +131,35 @@ export default function Home() {
                       )}
                       <Link
                         to="/principal_message"
-                        className="text-primary"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", color: "#008000" }}
                       >
-                        Read More
+                        <Button
+                          style={{ backgroundColor: "#008000", border: "none" }}
+                        >
+                          Read More
+                        </Button>
                       </Link>
                     </div>
                   </Col>
                 </Row>
               ))}
           </div>
-        </FadeInSection>
+        </SlideUp>
       </Container>
-      <div className="featureWrapper flex-wrap align-content-center">
-        <div className="featureContainer border py-5">
-          <Container>
-            <FadeInSection>
-              <Feature />
-            </FadeInSection>
-          </Container>
-        </div>
+      <div
+        className="featureContainer py-5"
+        style={{ backgroundColor: "#fff" }}
+      >
+        <Container>
+          <FadeInSection>
+            <Feature />
+          </FadeInSection>
+        </Container>
       </div>
+      {/*
       <div className="noticeWrapper">
         <Container>
           <Row className="py-5 d-flex justify-content-center">
-            {/* Notice Section */}
             <Col xs={12} md={6}>
               <div className="contentBox noticeBox">
                 <div className="sectionHeader">
@@ -160,6 +175,7 @@ export default function Home() {
           </Row>
         </Container>
       </div>
+      */}
       <div className="achieveWrapper flex-wrap align-content-center">
         <div className="achieveContainer py-5">
           <Container>
@@ -169,24 +185,70 @@ export default function Home() {
           </Container>
         </div>
       </div>
-      <div className="testimonialWrapper py-5">
+      <div className="whyWrapper py-5" style={{ backgroundColor: "#f2f2f2" }}>
         <Container>
-          <div className="testimonialTitle d-flex justify-content-center align-items-center mb-3">
-            <hr className="customHr" />
-            &nbsp;
-            <h2
+          <div className="whyTitle">
+            <h3
+              className="fw-bold"
               style={{
                 fontFamily: "Open Sans, sans-serif",
-                color: "#654321",
-                fontSize: "2rem",
-                fontWeight: "bold",
+                fontWeight: "1rem",
               }}
             >
-              TESTIMONIALS
-            </h2>
-            &nbsp;
-            <hr className="customHr" />
+              Why Choose Us?
+            </h3>
+            <div className="row py-3">
+              <div className="col-4"></div>
+              <div className="col-8">
+                <Tabs
+                  defaultActiveKey="profile"
+                  id="controlled-tab"
+                  activeKey={key}
+                  onSelect={(k) => setKey(k)}
+                  className="mb-3"
+                  justify
+                  style={{ fontWeight: "bold", color: "#c2c2c2" }}
+                >
+                  <Tab eventKey="health" title="Health">
+                    The school has qualified and trained Health & Wellness
+                    teachers and a Special Educator among its regular staffs.
+                    These teachers are RCI (Rehabilitation Council of India)
+                    certified professionals. The school religiously tries to
+                    implement the School Health Programme in CBSE Schools and
+                    carry out the month-wise modules provided by the UNESCO.
+                  </Tab>
+                  <Tab eventKey="transport" title="Transport">
+                    The transportation of students is managed by St. Anthony’s
+                    School Transporters Union (SASSTU). It provides dedicated
+                    transportation for students covering different routes. For
+                    details Parents/Guardians may contact the Union’s Office
+                    situated in the School Campus. *Students availing the School
+                    transportation facility provided by SASSTU are not allowed
+                    to use other means of commutation. In case of emergency,
+                    School will provide alternate means of transport. * Students
+                    are not allowed to drive any engine vehicle to/from School
+                  </Tab>
+                  <Tab eventKey="clubs" title="School Clubs">
+                    <ul>
+                      <li>Eco Club for Mission Life</li>
+                      <li>Literary Club</li>
+                      <li>Photography Club</li>
+                      <li>Music Club</li>
+                      <li>Art Club</li>
+                      <li>Science Club</li>
+                      <li>Math Club</li>
+                      <li>Quiz Club</li>
+                      <li>Dance Club</li>
+                    </ul>
+                  </Tab>
+                </Tabs>
+              </div>
+            </div>
           </div>
+        </Container>
+      </div>
+      <div className="testimonialWrapper py-5">
+        <Container>
           {Array.isArray(alumni) && alumni.length > 0 ? (
             <Carousel
               indicators={false}
