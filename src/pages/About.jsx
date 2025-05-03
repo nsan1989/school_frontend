@@ -1,5 +1,6 @@
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import AboutDetail from "../components/AboutDetail";
+import SchoolCard from "../components/Card";
 import "../styles/Common.css";
 import Title from "../hooks/Title";
 import SlideUp from "../hooks/SlideUp";
@@ -10,14 +11,21 @@ export default function About() {
     <>
       <div className="aboutHeader">
         <div className="aboutTitle">
-          <span className="display-4 mt-auto" style={{fontWeight:"bold"}}>ABOUT SCHOOL</span>
+          <span className="display-4 mt-auto" style={{ fontWeight: "bold" }}>
+            ABOUT SCHOOL
+          </span>
         </div>
       </div>
-      <div className="aboutContent py-5">
-        <Container fluid>
+      <div className="aboutContent pt-5">
+        <Container>
           <SlideUp>
             <AboutDetail />
           </SlideUp>
+        </Container>
+      </div>
+      <div className="schoolCard py-5">
+        <Container>
+          <SchoolCard />
         </Container>
       </div>
     </>

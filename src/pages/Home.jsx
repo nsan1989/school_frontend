@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 import Banner from "../components/Carousel";
 import SchoolCard from "../components/Card";
 import Feature from "../components/Feature";
-import Notice from "../components/Notice";
 import Achievement from "../components/Achievement";
 import parse from "html-react-parser";
 import Title from "../hooks/Title";
@@ -23,6 +22,7 @@ import SlideUp from "../hooks/SlideUp";
 
 import "../styles/Home.css";
 import { FaRegUserCircle } from "react-icons/fa";
+import whyImage from "../assets/why_image.jpeg";
 
 export default function Home() {
   Title("Home");
@@ -156,26 +156,6 @@ export default function Home() {
           </FadeInSection>
         </Container>
       </div>
-      {/*
-      <div className="noticeWrapper">
-        <Container>
-          <Row className="py-5 d-flex justify-content-center">
-            <Col xs={12} md={6}>
-              <div className="contentBox noticeBox">
-                <div className="sectionHeader">
-                  <h3>NOTICE</h3>
-                  <Link to="/notification">View All</Link>
-                </div>
-                <hr />
-                <div className="noticeContent">
-                  <Notice />
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-      */}
       <div className="achieveWrapper flex-wrap align-content-center">
         <div className="achieveContainer py-5">
           <Container>
@@ -185,7 +165,7 @@ export default function Home() {
           </Container>
         </div>
       </div>
-      <div className="whyWrapper py-5" style={{ backgroundColor: "#f2f2f2" }}>
+      <div className="whyWrapper py-5" style={{ backgroundColor: "#f2f2f2", minHeight: "80vh" }}>
         <Container>
           <div className="whyTitle">
             <h3
@@ -193,13 +173,16 @@ export default function Home() {
               style={{
                 fontFamily: "Open Sans, sans-serif",
                 fontWeight: "1rem",
+                color: "#008000"
               }}
             >
               Why Choose Us?
             </h3>
-            <div className="row py-3">
-              <div className="col-4"></div>
-              <div className="col-8">
+            <div className="row pt-5">
+              <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-flex justify-content-center">
+                <Image className="img-fluid rounded shadow-sm" src={whyImage} loading="lazy" style={{height:"60vh", width: "auto"}} />
+              </div>
+              <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                 <Tabs
                   defaultActiveKey="profile"
                   id="controlled-tab"
@@ -207,7 +190,7 @@ export default function Home() {
                   onSelect={(k) => setKey(k)}
                   className="mb-3"
                   justify
-                  style={{ fontWeight: "bold", color: "#c2c2c2" }}
+                  style={{ color: "#c2c2c2", textAlign: "justify" }}
                 >
                   <Tab eventKey="health" title="Health">
                     The school has qualified and trained Health & Wellness
@@ -222,11 +205,19 @@ export default function Home() {
                     School Transporters Union (SASSTU). It provides dedicated
                     transportation for students covering different routes. For
                     details Parents/Guardians may contact the Union’s Office
-                    situated in the School Campus. *Students availing the School
-                    transportation facility provided by SASSTU are not allowed
-                    to use other means of commutation. In case of emergency,
-                    School will provide alternate means of transport. * Students
-                    are not allowed to drive any engine vehicle to/from School
+                    situated in the School Campus.
+                    <ul>
+                      <li>
+                        Students availing the School transportation facility
+                        provided by SASSTU are not allowed to use other means of
+                        commutation. In case of emergency, School will provide
+                        alternate means of transport.
+                      </li>
+                      <li>
+                        Students are not allowed to drive any engine vehicle
+                        to/from School
+                      </li>
+                    </ul>
                   </Tab>
                   <Tab eventKey="clubs" title="School Clubs">
                     <ul>
@@ -269,7 +260,7 @@ export default function Home() {
                         className="d-flex justify-content-center"
                       >
                         <Card
-                          className="alumniCard h-100 p-3 rounded text-center text-light d-flex flex-column justify-content-between"
+                          className="alumniCard h-100 p-3 rounded shadow-lg text-center text-light d-flex flex-column justify-content-between"
                           style={{
                             minHeight: "300px",
                             backgroundColor: "#FFFFFF",

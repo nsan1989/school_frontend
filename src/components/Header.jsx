@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  Container,
-  Image,
-  NavDropdown,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
 import useSchoolInfo from "../hooks/SchoolInfo";
@@ -46,10 +40,10 @@ const navLinks = [
 
 export default function Header() {
   const [expanded, setExpanded] = useState(false);
-  const [navbarBg, setNavbarBg] = useState("rgba(255,255,255,0.9)");
-  const [navbarLinks, setNavbarLinks] = useState("#fff");
+  const [navbarBg, setNavbarBg] = useState("");
+  const [navbarLinks, setNavbarLinks] = useState("#ffffff");
   const [hoveredDropdown, setHoveredDropdown] = useState(null);
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 767.99);
   const toggleNavbar = () => setExpanded((prev) => !prev);
   const closeNavbar = () => setExpanded(false);
   const { schoolInfo, error } = useSchoolInfo();
@@ -60,10 +54,10 @@ export default function Header() {
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setNavbarBg("rgba(255, 255, 255, 0.9)");
-        setNavbarLinks("#654321")
+        setNavbarLinks("#004d00");
       } else {
         setNavbarBg("rgba(0, 0, 0, 0.2)");
-        setNavbarLinks("#fff")
+        setNavbarLinks("#ffffff");
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -85,7 +79,7 @@ export default function Header() {
       fixed="top"
       expanded={expanded}
       style={{
-        transition: "background-color 0.3s ease-in-out",
+        transition: "background-color0.3s ease-in-out",
         backgroundColor: isSmallScreen ? "#fff" : navbarBg,
         backdropFilter:
           !isSmallScreen && navbarBg !== "transparent" ? "blur(1px)" : "none",
@@ -97,7 +91,7 @@ export default function Header() {
     >
       <Container>
         <Navbar.Brand
-          className="d-flex align-items-center"
+          className="d-flex align-items-center h-100"
           as={Link}
           to="/"
           onClick={closeNavbar}
@@ -105,17 +99,21 @@ export default function Header() {
           {error && <p>{error}</p>}
           {schoolInfo?.school_photo && schoolInfo?.school_name && (
             <>
-              <Image
-                className="img-fluid"
-                src={`${baseUrl}${schoolInfo.school_photo}`}
-                alt={schoolInfo.school_name}
-                style={{ width: "60px", height: "60px" }}
-              />
-              &nbsp;
-              <div
-                className="schoolName d-none d-md-flex"
-              >
-                <h4 style={{color: navbarLinks}}>{schoolInfo.school_name}</h4>
+              <div className="d-flex align-items-center h-100">
+                <Image
+                  className="img-fluid"
+                  src={`${baseUrl}${schoolInfo.school_photo}`}
+                  alt={schoolInfo.school_name}
+                  style={{ width: "60px", height: "60px" }}
+                />
+              </div>
+              <div className="d-none d-md-flex align-items-center h-100 ms-2">
+                <p
+                  className="text-capitalize fw-bold m-0"
+                  style={{ color: navbarLinks, fontFamily: "Poppins, sans-serif", fontSize: "1.5rem" }}
+                >
+                  {schoolInfo.school_name}
+                </p>
               </div>
             </>
           )}
@@ -138,7 +136,7 @@ export default function Header() {
               link.dropdown ? (
                 <NavDropdown
                   key={index}
-                  title={link.name}
+                  title={<span style={{ color: navbarLinks }}>{link.name}</span>}
                   id={`${link.name.toLowerCase()}-dropdown`}
                   show={
                     hoveredDropdown === index ||
@@ -157,7 +155,7 @@ export default function Header() {
                       );
                     }
                   }}
-                  style={{ fontSize: "0.9rem", color: "#fffff" }}
+                  style={{fontSize: "0.9rem"}}
                 >
                   {link.dropdown.map((item, idx) => (
                     <NavDropdown.Item

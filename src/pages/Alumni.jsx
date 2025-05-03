@@ -15,7 +15,6 @@ export default function Alumni() {
       </div>
       <div
         className="alumniContent py-5"
-        style={{ backgroundColor: "#f8f1e7" }}
       >
         <Container>
           <AlumniContent />

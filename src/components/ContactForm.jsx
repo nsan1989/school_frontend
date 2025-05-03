@@ -43,7 +43,7 @@ export default function ContactForm() {
 
   return (
     <div className="contactForm p-3 rounded shadow">
-      <Form onSubmit={handleSubmit} style={{color:"#654321"}}>
+      <Form onSubmit={handleSubmit} style={{color:"#004d00"}}>
         <Form.Group className="mb-3" controlId="formFullName">
           <Form.Label>Fullname</Form.Label>
           <Form.Control
@@ -90,13 +90,9 @@ export default function ContactForm() {
           />
         </Form.Group>
         <Button
+          variant="outline-success"
           type="submit"
           size="md"
-          style={{
-            backgroundColor: "#654321",
-            border: "none",
-            color: "#ffffff",
-          }}
         >
           SEND
         </Button>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Row, Col, Image } from "react-bootstrap";
 
+import "../styles/Event.css";
 import { FaRegUserCircle } from "react-icons/fa";
 
 export default function Event() {
@@ -8,6 +9,7 @@ export default function Event() {
   const [error, setError] = useState(null);
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [images, setImages] = useState([]);
+  const [hoveredEventId, setHoveredEventId] = useState(false);
 
   const eventUrl = import.meta.env.VITE_EVENT_API_URL;
   const galleryUrl = import.meta.env.VITE_GALLERY_API_URL;
@@ -62,11 +64,12 @@ export default function Event() {
               className="p-2"
             >
               <Card
-                className="h-100 shadow-sm text-light"
+                className="h-100 shadow-lg text-light"
                 style={{
                   minHeight: "300px",
-                  backgroundColor: "rgba(101, 67, 33, 0.9)",
                 }}
+                onMouseEnter={() => setHoveredEventId(events.id)}
+                onMouseLeave={() => setHoveredEventId(null)}
               >
                 <Card.Body className="text-center d-flex flex-column">
                   <div className="d-flex justify-content-center">
@@ -84,30 +87,23 @@ export default function Event() {
                       <FaRegUserCircle style={{ fontSize: "200px" }} />
                     )}
                   </div>
-                  <div className="cardTitle d-flex justify-content-between py-2">
-                    <Card.Title>{events.title}</Card.Title>
-                    <Card.Text>
-                      <small>{events.date}</small>
-                    </Card.Text>
-                  </div>
-                  <Card.Text>
-                    {events.content.split("").slice(0, 30).join("") + "..."}
-                  </Card.Text>
-                  <div className="position-relative mt-auto">
-                    <Button
-                      className="w-100"
-                      onClick={() => {
-                        setSelectedEventId(events.id);
-                        fetchGallery(events.id);
-                      }}
-                      style={{
-                        backgroundColor: "#FFD700",
-                        border: "none",
-                        color: "#654321",
-                      }}
-                    >
-                      View Photos
-                    </Button>
+                  <div className={`overlay ${hoveredEventId === events.id ? "show" : ""}`}>
+                    <div className="overlay-content">
+                      <Card.Title>{events.title}</Card.Title>
+                      <Card.Text>
+                        <small>{events.date}</small>
+                      </Card.Text>
+                      <Button
+                        variant="outline-light"
+                        className="w-100"
+                        onClick={() => {
+                          setSelectedEventId(events.id);
+                          fetchGallery(events.id);
+                        }}
+                      >
+                        View Photos
+                      </Button>
+                    </div>
                   </div>
                 </Card.Body>
               </Card>
@@ -122,7 +118,11 @@ export default function Event() {
           <h3 className="text-center">Gallery Photos</h3>
           <Row className="g-4">
             {images.map((image, index) => (
-              <Col className="d-flex justify-content-center align-items-center" md={3} key={index}>
+              <Col
+                className="d-flex justify-content-center align-items-center"
+                md={3}
+                key={index}
+              >
                 <Image
                   src={`${baseUrl}${image.photo}`}
                   alt="Photo"

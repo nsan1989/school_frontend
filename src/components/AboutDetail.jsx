@@ -1,16 +1,10 @@
 import { useState, useEffect } from "react";
 import parse, { domToReact } from "html-react-parser";
 import { Row, Col, Image, Container } from "react-bootstrap";
-import useSchoolInfo from "../hooks/SchoolInfo";
-import SchoolCard from "../components/Card.jsx";
-
-import "../styles/AboutDetail.css";
 
 export default function AboutDetail() {
   const [aboutSchool, setAboutSchool] = useState([]);
   const [error, setError] = useState(null);
-  const { schoolInfo } = useSchoolInfo();
-  const baseUrl = import.meta.env.VITE_INFO_BASE_URL;
 
   const apiUrl = import.meta.env.VITE_ABOUT_API_URL;
 
@@ -64,7 +58,7 @@ export default function AboutDetail() {
                           fontWeight: "bold",
                           fontFamily: "Open Sans, sans-serif",
                           fontSize: "2rem",
-                          color: "#654321",
+                          color: "#008000",
                         }}
                       >
                         St.Anthony's History
@@ -101,7 +95,7 @@ export default function AboutDetail() {
           );
         })
       ) : (
-        <p>Content will be updated soon.</p>
+        <p className="h-100">Content will be updated soon.</p>
       )}
     </>
   );

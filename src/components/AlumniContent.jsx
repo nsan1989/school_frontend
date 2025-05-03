@@ -30,7 +30,7 @@ export default function AlumniContent() {
               <Col md={3} key={index}>
                 <div className="d-flex justify-content-center">
                   <Card
-                    className="alumniCard h-100 p-3 m-2 text-center d-flex flex-column justify-content-between"
+                    className="alumniCard h-100 shadow-lg p-3 m-2 text-center d-flex flex-column justify-content-between"
                     style={{
                       minHeight: "300px",
                       backgroundColor: "#FFFFFF",
