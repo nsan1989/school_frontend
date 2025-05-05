@@ -166,19 +166,18 @@ export default function Home() {
         </div>
       </div>
       <div className="whyWrapper py-5" style={{ backgroundColor: "#f2f2f2", minHeight: "80vh" }}>
-        <Container>
+        <Container className="border bg-white rounded p-5 shadow-sm">
           <div className="whyTitle">
             <h3
               className="fw-bold"
               style={{
-                fontFamily: "Open Sans, sans-serif",
-                fontWeight: "1rem",
-                color: "#008000"
+                fontFamily: "Poppins, sans-serif",
+                color: "#004d00"
               }}
             >
               Why Choose Us?
             </h3>
-            <div className="row pt-5">
+            <div className="row pt-5 g-3">
               <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-flex justify-content-center">
                 <Image className="img-fluid rounded shadow-sm" src={whyImage} loading="lazy" style={{height:"60vh", width: "auto"}} />
               </div>
@@ -240,6 +239,12 @@ export default function Home() {
       </div>
       <div className="testimonialWrapper py-5">
         <Container>
+          <div className="row py-3">
+              <div className="col-12 text-center d-flex flex-column">
+                <h6>TESTIMONIALS</h6>
+                <h3 className="fw-bold" style={{color:"#004d00"}}>What People Say</h3>
+              </div>
+          </div>
           {Array.isArray(alumni) && alumni.length > 0 ? (
             <Carousel
               indicators={false}
@@ -269,11 +274,11 @@ export default function Home() {
                           }}
                         >
                           <Card.Img
-                            className="alumniLogo mx-auto p-2"
+                            className="alumniLogo mx-auto shadow"
                             variant="top"
                             src={`${alumniBaseUrl}${alumnis.photo}`}
                             alt={`${alumnis.name}'s photo`}
-                            style={{ maxWidth: "96px", height: "auto" }}
+                            style={{ maxWidth: "96px", height: "auto", borderRadius: "50%" }}
                           />
                           <Card.Body style={{ color: "#654321" }}>
                             <Card.Title

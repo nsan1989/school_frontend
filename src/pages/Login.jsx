@@ -15,7 +15,7 @@ export default function Login() {
           <Row className="py-5">
             <Col xs={12} sm={12} md={4} lg={4} xl={4}></Col>
             <Col className="rounded p-3" xs={12} sm={12} md={4} lg={4} xl={4}>
-              <Form className="p-3 shadow" style={{color:"#FFD700"}}>
+              <Form className="p-3 shadow" style={{color:"#004d00"}}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
                   <Form.Control type="email" placeholder="Enter email" />
@@ -27,7 +27,7 @@ export default function Login() {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="Remember me" />
                 </Form.Group>
-                <Button variant="warning" type="submit">
+                <Button variant="success" type="submit">
                   Submit
                 </Button>
               </Form>

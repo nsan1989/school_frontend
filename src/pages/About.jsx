@@ -5,6 +5,8 @@ import "../styles/Common.css";
 import Title from "../hooks/Title";
 import SlideUp from "../hooks/SlideUp";
 
+import "../styles/About.css";
+
 export default function About() {
   Title("About");
   return (
@@ -23,10 +25,12 @@ export default function About() {
           </SlideUp>
         </Container>
       </div>
-      <div className="schoolCard py-5">
-        <Container>
-          <SchoolCard />
-        </Container>
+      <div className="schoolCard">
+        <div className="schoolContent py-5">
+          <Container style={{color:"#fff"}}>
+            <SchoolCard />
+          </Container>
+        </div>
       </div>
     </>
   );

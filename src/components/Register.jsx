@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Form, Button, Row, Col, FloatingLabel } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "../styles/Common.css";
@@ -186,11 +186,11 @@ export default function Register() {
       <div className="py-2 text-center">
         <p>
           To check your application status{" "}
-          <Link to="/application" style={{textDecoration:"none", color:"#008000"}}>click here</Link>.
+          <Link to="/application" style={{textDecoration:"none", color:"#004d00"}}>click here</Link>.
         </p>
       </div>
       <Col>
-        <Form onSubmit={handleSubmit} className="p-3 shadow rounded" style={{color:"#654321"}}>
+        <Form onSubmit={handleSubmit} className="p-3 shadow rounded" style={{color:"#004d00"}}>
           <h4 className="mb-4 text-center">Student Registration</h4>
           <h3 className="text-center mb-4">
             {currentYear} - {nextYear}

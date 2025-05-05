@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, Container, Image, NavDropdown, Button } from "react-bootstrap";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
 import useSchoolInfo from "../hooks/SchoolInfo";
@@ -43,7 +43,9 @@ export default function Header() {
   const [navbarBg, setNavbarBg] = useState("");
   const [navbarLinks, setNavbarLinks] = useState("#ffffff");
   const [hoveredDropdown, setHoveredDropdown] = useState(null);
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 767.99);
+  const [isSmallScreen, setIsSmallScreen] = useState(
+    window.innerWidth < 767.99
+  );
   const toggleNavbar = () => setExpanded((prev) => !prev);
   const closeNavbar = () => setExpanded(false);
   const { schoolInfo, error } = useSchoolInfo();
@@ -110,7 +112,11 @@ export default function Header() {
               <div className="d-none d-md-flex align-items-center h-100 ms-2">
                 <p
                   className="text-capitalize fw-bold m-0"
-                  style={{ color: navbarLinks, fontFamily: "Poppins, sans-serif", fontSize: "1.5rem" }}
+                  style={{
+                    color: navbarLinks,
+                    fontFamily: "Poppins, sans-serif",
+                    fontSize: "1.5rem",
+                  }}
                 >
                   {schoolInfo.school_name}
                 </p>
@@ -136,7 +142,9 @@ export default function Header() {
               link.dropdown ? (
                 <NavDropdown
                   key={index}
-                  title={<span style={{ color: navbarLinks }}>{link.name}</span>}
+                  title={
+                    <span style={{ color: navbarLinks }}>{link.name}</span>
+                  }
                   id={`${link.name.toLowerCase()}-dropdown`}
                   show={
                     hoveredDropdown === index ||
@@ -155,7 +163,7 @@ export default function Header() {
                       );
                     }
                   }}
-                  style={{fontSize: "0.9rem"}}
+                  style={{ fontSize: "0.9rem" }}
                 >
                   {link.dropdown.map((item, idx) => (
                     <NavDropdown.Item
@@ -181,21 +189,15 @@ export default function Header() {
               )
             )}
           </Nav>
-          {/*
           <div className="accountLogin">
             <Link to="/login">
               <Button
-                style={{
-                  backgroundColor: "#FFD700",
-                  border: "none",
-                  color: "#654321",
-                }}
+              className="btn btn-sm btn-success"
               >
                 Student
               </Button>
             </Link>
           </div>
-           */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

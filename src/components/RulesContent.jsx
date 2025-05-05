@@ -28,7 +28,7 @@ export default function RulesContent() {
         {error && <p>{error}</p>}
         {Array.isArray(rules) && rules.length > 0 ? (
             rules.map((rule, index) => (
-                <div className="ruleContent" key={index} style={{color:"#654321"}}>
+                <div className="ruleContent" key={index} style={{color:"#004d00"}}>
                     {parse(rule.body)}
                 </div>
             ))
