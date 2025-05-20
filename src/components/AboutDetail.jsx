@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import parse, { domToReact } from "html-react-parser";
-import { Row, Col, Image, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 export default function AboutDetail() {
   const [aboutSchool, setAboutSchool] = useState([]);

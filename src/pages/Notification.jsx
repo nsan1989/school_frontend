@@ -10,7 +10,7 @@ export default function Notification() {
     <>
       <div className="notificationHeader" >
         <div className="notificationTitle">
-          <span className="display-3 mt-auto" style={{fontWeight:"bold"}}>NOTIFICATION</span>
+          <span className="display-3 mt-auto" style={{fontWeight:"bold"}}>NOTIFICATIONS</span>
         </div>
       </div>
       <div className="notificationContent py-5">

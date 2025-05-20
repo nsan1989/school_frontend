@@ -135,7 +135,6 @@ export default function Register() {
       });
 
       const result = await response.json();
-      console.log(result);
       setMessage("Successfully register!", result);
     } catch (error) {
       setError(error.message);
@@ -574,7 +573,7 @@ export default function Register() {
 
           {/* Submit Button */}
           <div className="py-3 text-center">
-            <Button variant="warning" type="submit" disabled={loading}>
+            <Button variant="success" type="submit" disabled={loading}>
               {loading ? "Submitting..." : "Submit"}
             </Button>
           </div>

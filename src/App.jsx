@@ -22,6 +22,7 @@ import RulesAndRegulations from "./pages/RulesAndRegulations";
 import Application from "./pages/Application";
 import Staff from "./pages/Staff";
 import ScrollToTop from "./components/ScrollToTop";
+import StudentsPage from "./pages/StudentPage";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,17 +30,21 @@ import Gallery from "./pages/Gallery";
 import { useEffect, useState } from "react";
 
 const AnimatedRoutes = () => {
-  const location = useLocation();
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
+    if (location.pathname === "/students") {
+       setLoading(false);
+    } else {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
-
     return () => clearTimeout(timer);
+    }
   }, []);
 
+  console.log("Current route:", location.pathname);
   return loading ? (
     <Preloader />
   ) : (
@@ -59,19 +64,22 @@ const AnimatedRoutes = () => {
       <Route path="/rules&regulations" element={<RulesAndRegulations />} />
       <Route path="/application" element={<Application />} />
       <Route path="/staff" element={<Staff />} />
+      <Route path="/students" element={<StudentsPage />} />
     </Routes>
   );
 };
 
 function App() {
+  const hideLayout = location.pathname === "/students";
+
   return (
     <Router>
       <ScrollToTop />
-      <Header />
+      {!hideLayout && <Header />}
       <main>
         <AnimatedRoutes />
       </main>
-      <Footer />
+      {!hideLayout && <Footer />}
     </Router>
   );
 }

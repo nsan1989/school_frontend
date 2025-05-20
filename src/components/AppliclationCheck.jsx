@@ -26,7 +26,6 @@ export default function CheckApplication() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         if (data.status === "success" && data.msg.length > 0) {
           setUserInfo(data.msg[0]);
           setMessage("Registration Successful!");

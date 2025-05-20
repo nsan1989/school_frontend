@@ -1,4 +1,4 @@
-import { Container, Image } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import AboutDetail from "../components/AboutDetail";
 import SchoolCard from "../components/Card";
 import "../styles/Common.css";
