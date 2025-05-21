@@ -12,7 +12,6 @@ import PrincipalMessage from "./pages/Principal";
 import Download from "./pages/Download";
 import Admission from "./pages/Admission";
 import Course from "./pages/Course";
-import Examination from "./pages/Examination";
 import Notification from "./pages/Notification";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
@@ -22,7 +21,11 @@ import RulesAndRegulations from "./pages/RulesAndRegulations";
 import Application from "./pages/Application";
 import Staff from "./pages/Staff";
 import ScrollToTop from "./components/ScrollToTop";
+import Menu from "./components/PortalMenu";
 import StudentsPage from "./pages/StudentPage";
+import Examination from "./pages/Examination";
+import Fees from "./pages/Fee";
+import Curriculums from "./pages/Curriculum";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -44,7 +47,6 @@ const AnimatedRoutes = () => {
     }
   }, []);
 
-  console.log("Current route:", location.pathname);
   return loading ? (
     <Preloader />
   ) : (
@@ -55,7 +57,6 @@ const AnimatedRoutes = () => {
       <Route path="/download" element={<Download />} />
       <Route path="/admission" element={<Admission />} />
       <Route path="/course" element={<Course />} />
-      <Route path="/examination" element={<Examination />} />
       <Route path="/notification" element={<Notification />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/gallery" element={<Gallery />} />
@@ -64,13 +65,17 @@ const AnimatedRoutes = () => {
       <Route path="/rules&regulations" element={<RulesAndRegulations />} />
       <Route path="/application" element={<Application />} />
       <Route path="/staff" element={<Staff />} />
-      <Route path="/students" element={<StudentsPage />} />
+      <Route path="/dashboard" element={<Menu><StudentsPage /></Menu>} />
+      <Route path="/examination" element={<Menu><Examination /></Menu>} />
+      <Route path="/fees" element={<Menu><Fees /></Menu>} />
+      <Route path="/curriculums" element={<Menu><Curriculums /></Menu>} />
     </Routes>
   );
 };
 
 function App() {
-  const hideLayout = location.pathname === "/students";
+  const hideLayoutPaths = ["/students", "/examination", "/fees", "/curriculums"];
+  const hideLayout = hideLayoutPaths.includes(location.pathname);
 
   return (
     <Router>

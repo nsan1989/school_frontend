@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-
-import Menu from "../components/PortalMenu";
+import { Row, Col, Card, Image } from "react-bootstrap";
 
 export default function StudentsPage() {
   const [students, setStudents] = useState([]);
   const [error, setError] = useState(null);
   const getStudentApiUrl = import.meta.env.VITE_GET_STUDENT_API_URL;
-
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -30,7 +28,7 @@ export default function StudentsPage() {
           body: JSON.stringify({ id: parsedId }),
         });
         const data = await response.json();
-
+        console.log(data);
         if (!response.ok || data.status !== "success") {
           throw new Error(data.msg || "Failed to fetch students");
         }
@@ -46,22 +44,40 @@ export default function StudentsPage() {
 
   return (
     <>
-    <Menu />
-    <div>
-      {error && <p style={{ color: "red" }}>Error: {error}</p>}
+      <div>
+        {error && <p style={{ color: "red" }}>Error: {error}</p>}
 
-      {students.length > 0 ? (
-        <ul>
-          {students.map((student) => (
-            <li key={student.id}>
-              {student.stud_name} - {student.class_name} {student.section_name}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Loading students...</p>
-      )}
-    </div>
+        {students.length > 0 ? (
+          <Row className="d-flex justify-content-center">
+            <Col md={8}></Col>
+            <Col md={4}>
+              <Card className="shadow-lg d-flex align-items-center justify-content-center">
+                <ul className="ps-0 mb-0 py-3" style={{listStyleType:"none"}}>
+                  {students.map((student) => (
+                    <div key={student.id}>
+                      <li className="text-center mb-2">
+                         <Image className="shadow-sm p-2" src={student.stud_photo} alt="Student Photo" fluid rounded />
+                      </li>
+                      <li>
+                        <span>
+                          <strong>Name:</strong> {student.stud_name}
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          <strong>Class:</strong> {student.class_name}
+                        </span>
+                      </li>
+                    </div>
+                  ))}
+                </ul>
+              </Card>
+            </Col>
+          </Row>
+        ) : (
+          <p>Loading students...</p>
+        )}
+      </div>
     </>
   );
 }

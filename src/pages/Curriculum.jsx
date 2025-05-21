@@ -1,7 +1,7 @@
 import Title from "../hooks/Title";
 
-export default function Examination() {
-  Title("Examination");
+export default function Curriculums() {
+  Title("Curriculum");
   return (
     <>
       

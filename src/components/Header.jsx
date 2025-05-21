@@ -33,7 +33,6 @@ const navLinks = [
       { name: "Course", path: "/course" },
     ],
   },
-//  { name: "Examination", path: "/examination" },
   { name: "Notices", path: "/notification" },
   { name: "Contact", path: "/contact" },
 ];
