@@ -37,7 +37,7 @@ const AnimatedRoutes = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/students") {
+    if (location.pathname === "/dashboard") {
        setLoading(false);
     } else {
     const timer = setTimeout(() => {
@@ -74,7 +74,7 @@ const AnimatedRoutes = () => {
 };
 
 function App() {
-  const hideLayoutPaths = ["/students", "/examination", "/fees", "/curriculums"];
+  const hideLayoutPaths = ["/dashboard", "/examination", "/fees", "/curriculums", "/login"];
   const hideLayout = hideLayoutPaths.includes(location.pathname);
 
   return (

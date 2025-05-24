@@ -1,0 +1,9 @@
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(100, 100, 100, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #2e7d32; 
+}

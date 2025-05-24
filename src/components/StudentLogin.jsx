@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Row, Col, Form, Button, Image } from "react-bootstrap";
+
+import login_image from "../assets/login_image.svg";
+import "../styles/StudentLogin.css";
 
 export default function StudentLogin() {
   const [error, setError] = useState(null);
@@ -22,14 +25,11 @@ export default function StudentLogin() {
       });
       const result = await response.json();
 
-      if (
-        response.ok &&
-        result.status === "success"
-      ) {
-       const { id, auth_key } = result.msg[0];
+      if (response.ok && result.status === "success") {
+        const { id, auth_key } = result.msg[0];
         localStorage.setItem("student_id", id);
         localStorage.setItem("auth_key", auth_key);
-        window.open("/students", "_blank");
+        window.location.href = "/dashboard";
       } else {
         throw new Error("Login failed.");
       }
@@ -40,14 +40,22 @@ export default function StudentLogin() {
 
   return (
     <>
-      <Row className="py-5">
-        <Col xs={12} sm={12} md={4} lg={4} xl={4}></Col>
-        <Col className="rounded p-3" xs={12} sm={12} md={4} lg={4} xl={4}>
+      <Row className="d-flex justify-content-evenly shadow py-5 g-3 rounded glassmorphism">
+        <Col className="d-none d-md-flex" md={4}>
+          <Image className="img-fluid" src={login_image} />
+        </Col>
+        <Col
+          className="d-flex align-items-center justify-content-center"
+          md={4}
+        >
           <Form
             onSubmit={handleSubmit}
-            className="p-3 shadow"
             style={{ color: "#004d00" }}
+            className="w-100"
           >
+            <div className="form-title">
+              <h3 className="text-center pb-3 fw-bold">WELCOME BACK</h3>
+            </div>
             <Form.Group className="mb-3" controlId="formBasicText">
               <Form.Label>Username</Form.Label>
               <Form.Control
@@ -72,7 +80,6 @@ export default function StudentLogin() {
             </Button>
           </Form>
         </Col>
-        <Col xs={12} sm={12} md={4} lg={4} xl={4}></Col>
       </Row>
     </>
   );

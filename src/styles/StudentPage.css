@@ -1,0 +1,9 @@
+.custom-calendar {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.react-calendar {
+  width: 100%;
+  max-width: 350px;
+}

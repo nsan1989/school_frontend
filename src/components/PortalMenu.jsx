@@ -29,7 +29,7 @@ export default function Menu({ children }) {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("student_id");
-    navigate("/");
+    navigate("/login");
   };
 
   // Nav Items
@@ -44,7 +44,7 @@ export default function Menu({ children }) {
     >
       {({ isActive }) => (
         <>
-          <Icon size={20} color={isActive ? "#654321" : "#28a745"} />
+          <Icon size={20} color={isActive ? "#654321" : "#004d00"} />
           {expanded && label}
         </>
       )}
@@ -100,6 +100,7 @@ export default function Menu({ children }) {
             <NavItem to="/fees" label="Fee" Icon={CiMoneyCheck1} />
             <NavItem to="/curriculums" label="Curriculum" Icon={GoChecklist} />
           </Nav>
+          
         </div>
         {/* Main Content */}
         <div

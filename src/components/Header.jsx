@@ -189,7 +189,7 @@ export default function Header() {
             )}
           </Nav>
           <div className="accountLogin">
-            <Link to="/login">
+            <Link to="/login" target="_blank">
               <Button
               className="btn btn-sm btn-success"
               >
