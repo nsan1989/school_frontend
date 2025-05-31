@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Row, Col, Form, Button, Image } from "react-bootstrap";
 
 import login_image from "../assets/login_image.svg";
-import "../styles/StudentLogin.css";
+import "../styles/StudentLogin.module.css";
 
 export default function StudentLogin() {
   const [error, setError] = useState(null);
@@ -40,6 +40,7 @@ export default function StudentLogin() {
 
   return (
     <>
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
       <Row className="d-flex justify-content-evenly shadow py-5 g-3 rounded glassmorphism">
         <Col className="d-none d-md-flex" md={4}>
           <Image className="img-fluid" src={login_image} />

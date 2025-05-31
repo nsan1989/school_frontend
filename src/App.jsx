@@ -26,11 +26,13 @@ import StudentsPage from "./pages/StudentPage";
 import Examination from "./pages/Examination";
 import Fees from "./pages/Fee";
 import Curriculums from "./pages/Curriculum";
+import SchoolFees from "./components/SchoolFee";
+import Hostel from "./components/Hostel";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Gallery from "./pages/Gallery";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
 const AnimatedRoutes = () => {
   const [loading, setLoading] = useState(true);
@@ -69,12 +71,14 @@ const AnimatedRoutes = () => {
       <Route path="/examination" element={<Menu><Examination /></Menu>} />
       <Route path="/fees" element={<Menu><Fees /></Menu>} />
       <Route path="/curriculums" element={<Menu><Curriculums /></Menu>} />
+      <Route path="/school_fee" element={<Menu><SchoolFees /></Menu>} />
+      <Route path="/hostel_fee" element={<Menu><Hostel /></Menu>} />
     </Routes>
   );
 };
 
 function App() {
-  const hideLayoutPaths = ["/dashboard", "/examination", "/fees", "/curriculums", "/login"];
+  const hideLayoutPaths = ["/dashboard", "/examination", "/fees", "/curriculums", "/login", "/school_fee", "/hostel_fee"];
   const hideLayout = hideLayoutPaths.includes(location.pathname);
 
   return (

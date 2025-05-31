@@ -3,16 +3,18 @@ import { Row, Col, Card, Image, Table } from "react-bootstrap";
 import Calendar from "react-calendar";
 
 import "react-calendar/dist/Calendar.css";
-import "../styles/StudentPage.css";
+import "../styles/StudentPage.module.css";
 
 export default function StudentsPage() {
   const [students, setStudents] = useState([]);
   const [error, setError] = useState(null);
   const [date, setDate] = useState(new Date());
   const [holiday, setHoliday] = useState([]);
+  const [attendance, setAttendance] = useState([]);
 
   const getStudentApiUrl = import.meta.env.VITE_GET_STUDENT_API_URL;
   const getHolidayUrl = import.meta.env.VITE_HOLIDAY_API_URL;
+  const getAttendance = import.meta.env.VITE_ATTENDANCE_API_URL;
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -52,9 +54,7 @@ export default function StudentsPage() {
   useEffect(() => {
     const fetchHoliday = async () => {
       const auth_key = localStorage.getItem("auth_key");
-      console.log(auth_key);
       const id = localStorage.getItem("student_id");
-      console.log(id);
 
       const parsedId = parseInt(id);
       if (isNaN(parsedId)) {
@@ -72,7 +72,6 @@ export default function StudentsPage() {
           },
         });
         const data = await response.json();
-        console.log(data);
         if (!response.ok || data.status !== "success") {
           throw new Error(data.msg || "Failed to fetch Holidays");
         }
@@ -84,6 +83,38 @@ export default function StudentsPage() {
 
     fetchHoliday();
   }, [getHolidayUrl]);
+
+  useEffect(() => {
+    const fetchAttendance = async () => {
+      const auth_key = localStorage.getItem("auth_key");
+      const id = localStorage.getItem("student_id");
+
+      const parsedId = parseInt(id);
+      if (isNaN(parsedId)) {
+        setError("Invalid student ID");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(getAttendance, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: auth_key,
+          },
+        });
+        const data = await response.json();
+        if (!response.ok || data.status !== "success") {
+          throw new Error(data.msg || "Failed to fetch attendace");
+        }
+        setAttendance(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchAttendance();
+  }, [getAttendance]);
 
   return (
     <>
@@ -108,13 +139,46 @@ export default function StudentsPage() {
               </Row>
               <Row className="d-flex justify-content-evenly g-2">
                 <Col md={3}>
-                  <Card className="shadow-sm text-center">Attendance</Card>
+                  <Card className="shadow-sm text-center">
+                    <Card.Title>No. of Days Present</Card.Title>
+                    <div>
+                      {attendance ? (
+                        <>
+                          <p>{attendance.present}</p>
+                        </>
+                      ) : (
+                        <p>Loading attendance...</p>
+                      )}
+                    </div>
+                  </Card>
                 </Col>
                 <Col md={3}>
-                  <Card className="shadow-sm text-center">content</Card>
+                  <Card className="shadow-sm text-center">
+                    <Card.Title>No. of Days Absent</Card.Title>
+                    <div>
+                      {attendance ? (
+                        <>
+                          <p>{attendance.absent}</p>
+                        </>
+                      ) : (
+                        <p>Loading attendance...</p>
+                      )}
+                    </div>
+                  </Card>
                 </Col>
                 <Col md={3}>
-                  <Card className="shadow-sm text-center">content</Card>
+                  <Card className="shadow-sm text-center">
+                    <Card.Title>No. of Working Days</Card.Title>
+                    <div>
+                      {attendance ? (
+                        <>
+                          <p>{attendance.working_days}</p>
+                        </>
+                      ) : (
+                        <p>Loading attendance...</p>
+                      )}
+                    </div>
+                  </Card>
                 </Col>
               </Row>
             </Col>

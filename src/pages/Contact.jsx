@@ -3,7 +3,7 @@ import ContactForm from "../components/ContactForm";
 import Map from "../components/Map";
 import Title from "../hooks/Title";
 
-import "../styles/Common.css";
+import "../styles/Contact.module.css";
 
 export default function Contact() {
   Title("Contact");

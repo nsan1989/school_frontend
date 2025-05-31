@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import "../styles/Carousel.css";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import "../styles/Carousel.module.css";
+import blur from "../assets/blur-image.jpeg";
 
 export default function Banner() {
   const [desktopImage, setDesktopImage] = useState([]);
@@ -40,31 +43,33 @@ export default function Banner() {
           style={{ height: "100vh" }}
         >
           {error && <p>{error}</p>}
-            <Carousel fade controls={false}>
-              {desktopImage.map((url, index) => (
-                <Carousel.Item key={index}>
-                  <img
-                    src={url}
-                    className="img-fluid w-100 vh-100 object-fit-fill"
-                    effect="blur"
-                    placeholderSrc={url}
-                  />
-                </Carousel.Item>
-              ))}
-            </Carousel>
+          <Carousel fade controls={false}>
+            {desktopImage.map((url, index) => (
+              <Carousel.Item key={index}>
+                <LazyLoadImage
+                  src={url}
+                  placeholderSrc={blur}
+                  effect="blur"
+                  className="d-block w-100"
+                  style={{ height: "100vh", objectFit: "cover" }}
+                  alt={`Slide ${index + 1}`}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </div>
       </div>
       <div className="mobileWrapper d-md-none">
         <Carousel fade controls={false}>
-            {mobileImage.map((url, index) => (
-              <Carousel.Item key={index}>
-                <img
-                  src={url}
-                  alt={`Banner ${index}`}
-                  className="img-fluid w-100 vh-50 object-fit-fill"
-                />
-              </Carousel.Item>
-            ))}
+          {mobileImage.map((url, index) => (
+            <Carousel.Item key={index}>
+              <img
+                src={url}
+                alt={`Banner ${index}`}
+                className="img-fluid w-100 vh-50 object-fit-fill"
+              />
+            </Carousel.Item>
+          ))}
         </Carousel>
       </div>
     </>

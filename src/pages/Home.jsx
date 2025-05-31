@@ -20,7 +20,7 @@ import Title from "../hooks/Title";
 import FadeInSection from "../hooks/FadeInSection";
 import SlideUp from "../hooks/SlideUp";
 
-import "../styles/Home.css";
+import "../styles/Home.module.css";
 import { FaRegUserCircle } from "react-icons/fa";
 import whyImage from "../assets/why_image.jpeg";
 

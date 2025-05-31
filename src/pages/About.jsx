@@ -5,7 +5,7 @@ import "../styles/Common.css";
 import Title from "../hooks/Title";
 import SlideUp from "../hooks/SlideUp";
 
-import "../styles/About.css";
+import "../styles/About.module.css";
 
 export default function About() {
   Title("About");

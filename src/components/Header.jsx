@@ -5,7 +5,7 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
 import useSchoolInfo from "../hooks/SchoolInfo";
 
-import "../styles/Header.css";
+import "../styles/Header.module.css";
 
 const navLinks = [
   { name: "Home", path: "/" },

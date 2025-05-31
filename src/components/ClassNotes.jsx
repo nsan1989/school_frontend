@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default function Subjects() {
+export default function Notes() {
   const [subjects, setSubjects] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedSubjectId, setSelectedSubjectId] = useState(null);
   const [notes, setNotes] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const apiUrl = import.meta.env.VITE_SUBJECT_API_URL;
   const classNotesUrl = import.meta.env.VITE_CLASS_NOTES_API_URL;
 
+  // Get subjects
   useEffect(() => {
     const fetchData = async () => {
       const auth_key = localStorage.getItem("auth_key");
@@ -42,7 +44,9 @@ export default function Subjects() {
     fetchData();
   }, []);
 
+  // To fetch class notes contents for each subjects.
   const fetchNotes = async (subjectId) => {
+    console.log("📦 subject_id received in fetchNotes:", subjectId);
     const auth_key = localStorage.getItem("auth_key");
     const id = localStorage.getItem("student_id");
 
@@ -52,7 +56,7 @@ export default function Subjects() {
       setLoading(false);
       return;
     }
-    
+
     try {
       const urlWithParams = `${classNotesUrl}?id=${parsedId}`;
       const response = await fetch(urlWithParams, {
@@ -100,7 +104,6 @@ export default function Subjects() {
           <p className="text-center">Content will be updated soon.</p>
         )}
       </Row>
-      {selectedSubjectId && notes.length > 0}
     </>
   );
 }
