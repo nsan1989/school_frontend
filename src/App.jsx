@@ -28,11 +28,14 @@ import Fees from "./pages/Fee";
 import Curriculums from "./pages/Curriculum";
 import SchoolFees from "./components/SchoolFee";
 import Hostel from "./components/Hostel";
+import TransportFee from "./components/Transport";
+import TimeTables from "./pages/TimeTable";
+import ProfileInfo from "./pages/Profile";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Gallery from "./pages/Gallery";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 
 const AnimatedRoutes = () => {
   const [loading, setLoading] = useState(true);
@@ -73,12 +76,15 @@ const AnimatedRoutes = () => {
       <Route path="/curriculums" element={<Menu><Curriculums /></Menu>} />
       <Route path="/school_fee" element={<Menu><SchoolFees /></Menu>} />
       <Route path="/hostel_fee" element={<Menu><Hostel /></Menu>} />
+      <Route path="/transport_fee" element={<Menu><TransportFee /></Menu>} />
+      <Route path="/time_table" element={<Menu><TimeTables /></Menu>} />
+      <Route path="/profile_info" element={<Menu><ProfileInfo /></Menu>} />
     </Routes>
   );
 };
 
 function App() {
-  const hideLayoutPaths = ["/dashboard", "/examination", "/fees", "/curriculums", "/login", "/school_fee", "/hostel_fee"];
+  const hideLayoutPaths = ["/dashboard", "/examination", "/fees", "/curriculums", "/login", "/school_fee", "/hostel_fee", "/transport_fee", "/time_table", "/profile_info"];
   const hideLayout = hideLayoutPaths.includes(location.pathname);
 
   return (

@@ -25,7 +25,7 @@ export default function SchoolCard() {
 
   return (
     <>
-      <Row className="justify-content-center">
+      <Row className="justify-content-evenly">
         {error && <p>{error}</p>}
         {Array.isArray(mission) && mission.length > 0 ? (
           mission.map((missions, index) => (
@@ -36,10 +36,10 @@ export default function SchoolCard() {
                 style={{ width: "96px" }}
               />
               <div className="ms-3" style={{ alignContent: "start" }}>
-                <Card.Title>
+                <Card.Title style={{color:"#ffcc00", fontWeight:"bold", fontSize:"1rem"}}>
                   {missions.title}
                 </Card.Title>
-                <Card.Text>{missions.content}</Card.Text>
+                <Card.Text style={{color:"#004d00", fontSize:"0.9rem"}}>{missions.content}</Card.Text>
               </div>
             </Col>
           ))

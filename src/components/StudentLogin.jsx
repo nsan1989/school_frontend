@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Row, Col, Form, Button, Image } from "react-bootstrap";
 
 import login_image from "../assets/login_image.svg";
-import "../styles/StudentLogin.module.css";
+import "../styles/StudentLogin.css";
 
 export default function StudentLogin() {
   const [error, setError] = useState(null);
@@ -46,17 +46,14 @@ export default function StudentLogin() {
           <Image className="img-fluid" src={login_image} />
         </Col>
         <Col
-          className="d-flex align-items-center justify-content-center"
+          className="d-flex flex-column justify-content-between"
           md={4}
         >
           <Form
             onSubmit={handleSubmit}
             style={{ color: "#004d00" }}
-            className="w-100"
+            className="w-100 mb-4"
           >
-            <div className="form-title">
-              <h3 className="text-center pb-3 fw-bold">WELCOME BACK</h3>
-            </div>
             <Form.Group className="mb-3" controlId="formBasicText">
               <Form.Label>Username</Form.Label>
               <Form.Control
@@ -80,6 +77,9 @@ export default function StudentLogin() {
               Submit
             </Button>
           </Form>
+          <div className="bottom-text text-center">
+            <small>Developed by MIS Shija Hospital.</small>
+          </div>
         </Col>
       </Row>
     </>

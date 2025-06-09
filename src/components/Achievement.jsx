@@ -3,6 +3,7 @@ import { Card, Row, Col } from "react-bootstrap";
 import parse from "html-react-parser";
 
 import "../styles/Common.css";
+import "../styles/Achievement.css";
 
 export default function Achievement() {
   const [achieve, setAchieve] = useState([]);
@@ -35,7 +36,6 @@ export default function Achievement() {
                 className="achieveCard h-100 d-flex flex-column align-items-center text-center text-light p-3"
                 style={{
                   minHeight: "250px",
-                  backgroundColor: "rgba(255,255,255,0.8)",
                 }}
               >
                 <div className="achieveImage">
@@ -50,7 +50,7 @@ export default function Achievement() {
                   />
                 </div>
                 <Card.Body className="d-flex flex-column justify-content-center w-100">
-                  <div className="featureContent pt-3" style={{fontFamily:"Poppins, sans-serif",fontSize:"0.8rem", color:"#654321"}}>
+                  <div className="featureContent pt-3" style={{fontFamily:"Poppins, sans-serif",fontSize:"0.8rem", color:"#ffffff"}}>
                     {parse(achieves.achievement_info)}
                   </div>
                 </Card.Body>

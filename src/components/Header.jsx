@@ -5,7 +5,7 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
 import useSchoolInfo from "../hooks/SchoolInfo";
 
-import "../styles/Header.module.css";
+import "../styles/Header.css";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -80,7 +80,7 @@ export default function Header() {
       fixed="top"
       expanded={expanded}
       style={{
-        transition: "background-color0.3s ease-in-out",
+        transition: "background-color 0.3s ease-in-out",
         backgroundColor: isSmallScreen ? "#fff" : navbarBg,
         backdropFilter:
           !isSmallScreen && navbarBg !== "transparent" ? "blur(1px)" : "none",

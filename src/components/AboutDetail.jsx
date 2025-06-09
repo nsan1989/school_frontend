@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import parse, { domToReact } from "html-react-parser";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Image } from "react-bootstrap";
+import image from "../assets/background_new2.jpg";
+import SchoolCard from "./Card";
 
 export default function AboutDetail() {
   const [aboutSchool, setAboutSchool] = useState([]);
@@ -50,28 +52,34 @@ export default function AboutDetail() {
           return (
             <div key={index}>
               <Container>
-                <Row className="py-3 mb-3">
-                  <Col xs={12} sm={12} md={4} lg={4} xl={4}>
-                    <div className="sectionTitle">
+                <Row className="mb-3">
+                  <Col className="d-flex flex-column">
+                    <div className="sectionTitle text-center">
                       <h3
                         style={{
                           fontWeight: "bold",
                           fontFamily: "Open Sans, sans-serif",
                           fontSize: "2rem",
-                          color: "#008000",
+                          color: "#004d00",
                         }}
                       >
-                        St.Anthony's History
+                        Welcome to St.Anthony's School
                       </h3>
+                      <small style={{color:"#ffcc00"}}>Inspiring Minds&nbsp;|&nbsp;Bulding Futures</small>
                     </div>
+                  </Col>
+                </Row>
+                <Row className="py-5 mb-3">
+                  <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                      <Image className="img-fluid rounded" src={image} />
                   </Col>
                   <Col
                     xs={12}
                     sm={12}
-                    md={8}
-                    lg={8}
-                    xl={8}
-                    style={{ textAlign: "justify" }}
+                    md={6}
+                    lg={6}
+                    xl={6}
+                    className="d-flex align-items-center"
                   >
                     <div className="h4Content">
                       {elements.h4.map((content, i) => (
@@ -79,15 +87,21 @@ export default function AboutDetail() {
                           key={i}
                           style={{
                             fontFamily: "Poppins, sans-serif",
-                            color: "#654321",
+                            color: "#004d00",
                             fontSize: "0.9rem",
                             fontStyle: "normal",
+                            textAlign: "justify"
                           }}
                         >
                           {content}
                         </h4>
                       ))}
                     </div>
+                  </Col>
+                </Row>
+                <Row className="py-5">
+                  <Col>
+                      <SchoolCard />
                   </Col>
                 </Row>
               </Container>

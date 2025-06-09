@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, Image } from "react-bootstrap";
+import { Row, Col, Card, Image } from "react-bootstrap";
 
 import { FaRegUserCircle } from "react-icons/fa";
 
@@ -17,6 +17,7 @@ export default function StaffInfo() {
           throw new Error("Failed to fetch data.");
         }
         const data = await response.json();
+        console.log(data);
         setStaff(data.msg);
       } catch (error) {
         setError(error.message);
@@ -26,20 +27,22 @@ export default function StaffInfo() {
   }, []);
   return (
     <>
+    <Row className="mb-3">
+      <Col><h3 style={{color:"#004d00", fontWeight:"bold"}}>Meet The Team</h3></Col>
+    </Row>
       {error && <p>{error}</p>}
       {Array.isArray(staff) && staff.length > 0 ? (
         staff.map((staffs, index) => (
           <div className="staffContent" key={index}>
             <Card
-              className="p-2"
+              className="shadow-lg"
               style={{
                 width: "18rem",
-                backgroundColor: "#E6D5C3",
                 color: "#3D2B1F",
               }}
             >
-              <Card.Body className="text-center">
-                <div className="cardImage text-center">
+              <Card.Body>
+                <div className="cardImage">
                   {imageError ? (
                     <FaRegUserCircle size={120} />
                   ) : (

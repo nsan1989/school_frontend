@@ -3,7 +3,7 @@ import { Row, Col, Button, Modal, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Title from "../hooks/Title";
 
-import "../styles/SchoolFee.module.css";
+import "../styles/SchoolFee.css";
 
 export default function SchoolFees() {
   const [error, setError] = useState(null);
@@ -31,17 +31,18 @@ export default function SchoolFees() {
   };
 
   const handlePayNow = (fee) => {
-    alert(`Initiating payment for ${fee.academic_fee_name} (${fee.due_amount})`);
-    window.open(paymentUrl, '_blank');
+    alert(
+      `Initiating payment for ${fee.academic_fee_name} (${fee.due_amount})`
+    );
+    window.open(paymentUrl, "_blank");
   };
 
   useEffect(() => {
     const fetchFees = async (url, setter) => {
       const auth_key = localStorage.getItem("auth_key");
-      const id = localStorage.getItem("student_id");
+      const id = parseInt(localStorage.getItem("student_id"));
 
-      const parsedId = parseInt(id);
-      if (isNaN(parsedId)) {
+      if (isNaN(id)) {
         setError("Invalid student ID");
         return;
       }
@@ -72,112 +73,85 @@ export default function SchoolFees() {
   Title("School Fee");
   return (
     <>
-      {error && <p style={{ color: "red" }}>Error: {error}</p>}
-      <Row>
-        <Col md={12}>
-          <h5 className="fw-bold">Clear Months</h5>
-        </Col>
-      </Row>
-      <Row className="g-3 mb-3 py-3">
-        <Col xs={12} sm={6} md={4} lg={3} style={{ minHeight: "10vh" }}>
-          <Link>
-            <Button variant="primary" className="w-100 h-100">
-              {clearFees && clearFees[0]?.length > 0 ? (
-                clearFees[0].map((clearFee) => (
-                  <div key={clearFee.id}>{clearFee.academic_fee_name}</div>
-                ))
-              ) : (
-                <p>Loading Data...</p>
-              )}
+      <div>
+        <h5 className="fw-bold">Clear Months</h5>
+      </div>
+      <div className="mb-2 py-3">
+        {clearFees && clearFees[0]?.length > 0 ? (
+          clearFees[0].map((clearFee) => (
+            <Button
+              variant="outline-success me-2 mb-2"
+              className="flex-fill"
+              style={{ width: "10rem" }}
+              key={clearFee.id}
+            >
+              {clearFee.academic_fee_name}
             </Button>
-          </Link>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={12}>
-          <h5 className="fw-bold">Due Amounts</h5>
-        </Col>
-      </Row>
-      <Row className="g-3 mb-3 py-3">
+          ))
+        ) : (
+          <p>Loading Data...</p>
+        )}
+      </div>
+      <div>
+        <h5 className="fw-bold">Due Amounts</h5>
+      </div>
+      <div className="mb-2 py-3">
         {dueFees?.length > 0 && dueFees[0]?.length > 0 ? (
           dueFees[0].map((dueFee) => (
-            <Col
+            <Button
+              className="flex-fill me-2 mb-2"
+              variant="outline-danger"
+              onClick={() => handleShow(dueFee)}
+              style={{ width: "10rem" }}
               key={dueFee.id}
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              style={{ minHeight: "10vh" }}
             >
-              <Button
-                className="w-100 h-100"
-                variant="primary"
-                onClick={() => handleShow(dueFee)}
-              >
-                {dueFee.academic_fee_name}
-              </Button>
-            </Col>
+              {dueFee.academic_fee_name}
+            </Button>
           ))
         ) : dueFees?.length > 0 ? (
-          <Col>
-            <Button variant="secondary" disabled>
-              Loading Data...
-            </Button>
-          </Col>
+          <p>Loading Data...</p>
         ) : (
           <p>No data</p>
         )}
-      </Row>
-      <Row>
-        <Col md={12}>
-          <h5 className="fw-bold">Due Months</h5>
-        </Col>
-      </Row>
-      <Row className="g-3 mb-3 py-3">
+      </div>
+      <div>
+        <h5 className="fw-bold">Due Months</h5>
+      </div>
+      <div className="mb-2 py-3">
         {onPay && onPay.length > 0 ? (
           onPay.map((fee) => (
-            <Col
+            <Button
+              className="flex-fill me-2 mb-2"
+              variant="outline-danger"
+              style={{ width: "10rem" }}
               key={fee.id}
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              style={{ minHeight: "10vh" }}
             >
-              <Button className="w-100 h-100" variant="primary">
-                {fee.academic_fee_name}
-              </Button>
-            </Col>
+              {fee.academic_fee_name}
+            </Button>
           ))
         ) : (
           <p>No data</p>
         )}
-      </Row>
-      <Row>
-        <Col md={12}>
-          <h5 className="fw-bold">Upcoming Months</h5>
-        </Col>
-      </Row>
-      <Row className="g-3 mb-3 py-3">
+      </div>
+      <div>
+        <h5 className="fw-bold">Upcoming Months</h5>
+      </div>
+      <div className="mb-2 py-3">
         {pending && pending.length > 0 ? (
           pending.map((fee) => (
-            <Col
+            <Button
+              className="flex-fill me-2 mb-2"
+              variant="outline-warning"
+              style={{ width: "10rem" }}
               key={fee.id}
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              style={{ minHeight: "10vh" }}
             >
-              <Button className="w-100 h-100" variant="primary">
-                {fee.academic_fee_name}
-              </Button>
-            </Col>
+              {fee.academic_fee_name}
+            </Button>
           ))
         ) : (
           <p>No data</p>
         )}
-      </Row>
+      </div>
       {/* Pop up window */}
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header>
@@ -186,24 +160,26 @@ export default function SchoolFees() {
         <Modal.Body>
           {selectedFee ? (
             <>
-              <Table striped bordered hover className="w-auto">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Total Amount</th>
-                    <th>Paid Amount</th>
-                    <th>Due Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{selectedFee.academic_fee_name}</td>
-                    <td>{selectedFee.payable_amount}</td>
-                    <td>{selectedFee.amount_paid}</td>
-                    <td>{selectedFee.due_amount}</td>
-                  </tr>
-                </tbody>
-              </Table>
+              <div className="table-responsive">
+                <Table striped bordered hover className="w-auto">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Total Amount</th>
+                      <th>Paid Amount</th>
+                      <th>Due Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{selectedFee.academic_fee_name}</td>
+                      <td>{selectedFee.payable_amount}</td>
+                      <td>{selectedFee.amount_paid}</td>
+                      <td>{selectedFee.due_amount}</td>
+                    </tr>
+                  </tbody>
+                </Table>
+              </div>
               <Button
                 className="btn-md"
                 variant="success"

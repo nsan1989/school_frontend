@@ -1,4 +1,4 @@
-import "../styles/Preloader.module.css";
+import "../styles/Preloader.css";
 
 export default function Preloader() {
   return (

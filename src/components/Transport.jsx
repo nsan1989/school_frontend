@@ -2,29 +2,29 @@ import { useState, useEffect } from "react";
 import { Row, Col, Button, Modal, Table } from "react-bootstrap";
 import Title from "../hooks/Title";
 
-export default function Hostel() {
+export default function TransportFee() {
   const [error, setError] = useState(null);
   const [clearFees, setClearFees] = useState([]);
   const [dueFees, setDueFees] = useState([]);
-  const [onPay, setOnPay] = useState([]);
+  const [nonPay, setNonPay] = useState([]);
   const [pending, setPending] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
-  const [selectedFee, setSelectedFee] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState(null);
 
-  const clearFeesUrl = import.meta.env.VITE_HOSTEL_CLEAR_FEES_API_URL;
-  const dueFeesUrl = import.meta.env.VITE_HOSTEL_DUE_FEES_API_URL;
-  const onPayUrl = import.meta.env.VITE_HOSTEL_NON_PAY_API_URL;
-  const pendingUrl = import.meta.env.VITE_HOSTEL_PENDING_API_URL;
+  const clearFeesUrl = import.meta.env.VITE_TRANSPORT_CLEAR_FEES_API_URL;
+  const dueFeesUrl = import.meta.env.VITE_TRANSPORT_DUE_FEES_API_URL;
+  const nonPayUrl = import.meta.env.VITE_TRANSPORT_NON_PAY_API_URL;
+  const pendingUrl = import.meta.env.VITE_TRANSPORT_PENDING_API_URL;
 
   const handleShow = (fee) => {
-    setSelectedFee(fee);
+    setSelectedMonth(fee);
     setShowModal(true);
   };
 
   const handleClose = () => {
     setShowModal(false);
-    setSelectedFee(null);
+    setSelectedMonth(null);
   };
 
   useEffect(() => {
@@ -56,11 +56,11 @@ export default function Hostel() {
     };
     fetchFees(clearFeesUrl, setClearFees);
     fetchFees(dueFeesUrl, setDueFees);
-    fetchFees(onPayUrl, setOnPay);
+    fetchFees(nonPayUrl, setNonPay);
     fetchFees(pendingUrl, setPending);
-  }, [clearFeesUrl, dueFeesUrl, onPayUrl, pendingUrl]);
+  }, [clearFeesUrl, dueFeesUrl, nonPayUrl, pendingUrl]);
 
-  Title("Hostel Fee");
+  Title("Transport Fee");
   return (
     <>
       <div>
@@ -72,11 +72,11 @@ export default function Hostel() {
             <Button
               variant="outline-primary"
               className="flex-fill me-2 mb-2"
-              style={{ width: "10rem" }}
               onClick={() => handleShow(clearFee)}
+              style={{ width: "10rem" }}
               key={clearFee.id}
             >
-              {clearFee.type_name}
+              {clearFee.fee_name}
             </Button>
           ))
         ) : (
@@ -92,8 +92,9 @@ export default function Hostel() {
             <Button
               variant="outline-danger"
               className="flex-fill me-2 mb-2"
-              style={{ width: "10rem" }}
               onClick={() => handleShow(dueFee)}
+              style={{ width: "10rem" }}
+              key={dueFee.id}
             >
               {dueFee.fee_name}
             </Button>
@@ -106,11 +107,11 @@ export default function Hostel() {
         <h5 className="fw-bold">Due Months</h5>
       </div>
       <div className="mb-2 py-3">
-        {onPay && onPay.length > 0 ? (
-          onPay.map((fee) => (
+        {nonPay && nonPay.length > 0 ? (
+          nonPay.map((fee) => (
             <Button
-              className="flex-fill me-2 mb-2"
               variant="outline-danger"
+              className="flex-fill me-2 mb-2"
               style={{ width: "10rem" }}
               key={fee.id}
             >
@@ -127,14 +128,14 @@ export default function Hostel() {
       <div className="mb-2 py-3">
         {pending && pending.length > 0 ? (
           pending.map((fee) => (
-            <Button
-              className="flex-fill me-2 mb-2"
+              <Button 
+              className="flex-fill me-2 mb-2" 
               variant="outline-success"
               style={{ width: "10rem" }}
-              key={dueFee.id}
-            >
-              {fee.academic_fee_name}
-            </Button>
+              key={fee.id}
+              >
+                {fee.academic_fee_name}
+              </Button>
           ))
         ) : (
           <p>No data</p>
@@ -146,7 +147,7 @@ export default function Hostel() {
           <Modal.Title>Fee Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {selectedFee ? (
+          {selectedMonth ? (
             <>
               <div className="table-responsive">
                 <Table striped bordered hover className="w-auto">
@@ -160,10 +161,10 @@ export default function Hostel() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>{selectedFee.type_name}</td>
-                      <td>{selectedFee.payable_amount}</td>
-                      <td>{selectedFee.amount_paid}</td>
-                      <td>{selectedFee.due_amount}</td>
+                      <td>{selectedMonth.fee_name}</td>
+                      <td>{selectedMonth.payable_amount}</td>
+                      <td>{selectedMonth.amount_paid}</td>
+                      <td>{selectedMonth.due_amount}</td>
                     </tr>
                   </tbody>
                 </Table>

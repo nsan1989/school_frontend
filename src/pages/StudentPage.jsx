@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Row, Col, Card, Image, Table } from "react-bootstrap";
+import { Row, Col, Card, Table } from "react-bootstrap";
 import Calendar from "react-calendar";
 
 import "react-calendar/dist/Calendar.css";
-import "../styles/StudentPage.module.css";
+import "../styles/StudentPage.css";
 
 export default function StudentsPage() {
   const [students, setStudents] = useState([]);
@@ -11,18 +11,25 @@ export default function StudentsPage() {
   const [date, setDate] = useState(new Date());
   const [holiday, setHoliday] = useState([]);
   const [attendance, setAttendance] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+  const [classTiming, setClassTiming] = useState([]);
+  const [attendanceToday, setAttendanceToday] = useState([]);
+  const [weekdays, setWeekdays] = useState([]);
 
   const getStudentApiUrl = import.meta.env.VITE_GET_STUDENT_API_URL;
   const getHolidayUrl = import.meta.env.VITE_HOLIDAY_API_URL;
   const getAttendance = import.meta.env.VITE_ATTENDANCE_API_URL;
+  const getNotificationApiUrl = import.meta.env.VITE_NOTIFICATION_API_URL;
+  const getClassTimingApiUrl = import.meta.env.VITE_CLASS_TIMING_API_URL;
+  const getAttendanceTodayApiUrl = import.meta.env.VITE_ATTENDANCE_TODAY_API_URL;
+  const getWeekdaysApiUrl = import.meta.env.VITE_WEEKDAYS_API_URL;
 
   useEffect(() => {
     const fetchStudents = async () => {
       const auth_key = localStorage.getItem("auth_key");
-      const id = localStorage.getItem("student_id");
+      const id = parseInt(localStorage.getItem("student_id"));
 
-      const parsedId = parseInt(id);
-      if (isNaN(parsedId)) {
+      if (isNaN(id)) {
         setError("Invalid student ID");
         setLoading(false);
         return;
@@ -35,7 +42,7 @@ export default function StudentsPage() {
             "Content-Type": "application/json",
             token: auth_key,
           },
-          body: JSON.stringify({ id: parsedId }),
+          body: JSON.stringify({ id: id }),
         });
         const data = await response.json();
         if (!response.ok || data.status !== "success") {
@@ -52,14 +59,12 @@ export default function StudentsPage() {
   }, [getStudentApiUrl]);
 
   useEffect(() => {
-    const fetchHoliday = async () => {
+    const fetchData = async () => {
       const auth_key = localStorage.getItem("auth_key");
-      const id = localStorage.getItem("student_id");
+      const id = parseInt(localStorage.getItem("student_id"));
 
-      const parsedId = parseInt(id);
-      if (isNaN(parsedId)) {
+      if (isNaN(id)) {
         setError("Invalid student ID");
-        setLoading(false);
         return;
       }
 
@@ -73,26 +78,144 @@ export default function StudentsPage() {
         });
         const data = await response.json();
         if (!response.ok || data.status !== "success") {
-          throw new Error(data.msg || "Failed to fetch Holidays");
+          throw new Error(data.msg || "Failed to fetch Data");
         }
         setHoliday(data.msg);
-      } catch (err) {
-        setError(err.message);
+      } catch (error) {
+        setError(error.message);
       }
     };
-
-    fetchHoliday();
+    fetchData();
   }, [getHolidayUrl]);
 
   useEffect(() => {
-    const fetchAttendance = async () => {
+    const fetchData = async () => {
       const auth_key = localStorage.getItem("auth_key");
-      const id = localStorage.getItem("student_id");
+      const id = parseInt(localStorage.getItem("student_id"));
 
-      const parsedId = parseInt(id);
-      if (isNaN(parsedId)) {
+      if (isNaN(id)) {
         setError("Invalid student ID");
-        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(getNotificationApiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: auth_key,
+          },
+        });
+        const data = await response.json();
+        if (!response.ok || data.status !== "success") {
+          throw new Error(data.msg || "Failed to fetch Data");
+        }
+        setNotifications(data.msg);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchData();
+  }, [getNotificationApiUrl]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const auth_key = localStorage.getItem("auth_key");
+      const id = parseInt(localStorage.getItem("student_id"));
+
+      if (isNaN(id)) {
+        setError("Invalid student ID");
+        return;
+      }
+
+      try {
+        const response = await fetch(getClassTimingApiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: auth_key,
+          },
+        });
+        const data = await response.json();
+        if (!response.ok || data.status !== "success") {
+          throw new Error(data.msg || "Failed to fetch Data");
+        }
+        setClassTiming(data.msg);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchData();
+  }, [getClassTimingApiUrl]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const auth_key = localStorage.getItem("auth_key");
+      const id = parseInt(localStorage.getItem("student_id"));
+
+      if (isNaN(id)) {
+        setError("Invalid student ID");
+        return;
+      }
+
+      try {
+        const response = await fetch(getAttendanceTodayApiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: auth_key,
+          },
+        });
+        const data = await response.json();
+        if (!response.ok || data.status !== "success") {
+          throw new Error(data.msg || "Failed to fetch Data");
+        }
+        setAttendanceToday(data.msg);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchData();
+  }, [getAttendanceTodayApiUrl]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const auth_key = localStorage.getItem("auth_key");
+      const id = parseInt(localStorage.getItem("student_id"));
+
+      if (isNaN(id)) {
+        setError("Invalid student ID");
+        return;
+      }
+
+      try {
+        const response = await fetch(getWeekdaysApiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: auth_key,
+          },
+        });
+        const data = await response.json();
+        console.log(data);
+        if (!response.ok || data.status !== "success") {
+          throw new Error(data.msg || "Failed to fetch Data");
+        }
+        setWeekdays(data.msg);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+    fetchData();
+  }, [getWeekdaysApiUrl]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const auth_key = localStorage.getItem("auth_key");
+      const id = parseInt(localStorage.getItem("student_id"));
+
+      if (isNaN(id)) {
+        setError("Invalid student ID");
         return;
       }
 
@@ -106,14 +229,14 @@ export default function StudentsPage() {
         });
         const data = await response.json();
         if (!response.ok || data.status !== "success") {
-          throw new Error(data.msg || "Failed to fetch attendace");
+          throw new Error(data.msg || "Failed to fetch Data");
         }
         setAttendance(data);
       } catch (error) {
         setError(error.message);
       }
     };
-    fetchAttendance();
+    fetchData();
   }, [getAttendance]);
 
   return (
@@ -128,7 +251,7 @@ export default function StudentsPage() {
                 <Col>
                   {students && students.length > 0 ? (
                     students.map((student) => (
-                      <div className="d-flex mb-3" key={student.id}>
+                      <div className="d-flex" key={student.id}>
                         <h5>Welcome!&nbsp;{student.stud_name}</h5>
                       </div>
                     ))
@@ -137,45 +260,91 @@ export default function StudentsPage() {
                   )}
                 </Col>
               </Row>
-              <Row className="d-flex justify-content-evenly g-2">
-                <Col md={3}>
-                  <Card className="shadow-sm text-center">
-                    <Card.Title>No. of Days Present</Card.Title>
-                    <div>
+              <Row className="d-flex justify-content-between g-2 mb-3">
+                <Col
+                  md={4}
+                  className="d-flex align-items-center"
+                  style={{ minHeight: "8rem" }}
+                >
+                  <Card className="shadow-sm text-center w-100">
+                    <Card.Title className="m-0">Present</Card.Title>
+                    <Card.Body>
                       {attendance ? (
                         <>
-                          <p>{attendance.present}</p>
+                          <p className="m-0">{attendance.present}</p>
                         </>
                       ) : (
-                        <p>Loading attendance...</p>
+                        <p className="m-0">Loading attendance...</p>
                       )}
-                    </div>
+                    </Card.Body>
                   </Card>
                 </Col>
-                <Col md={3}>
-                  <Card className="shadow-sm text-center">
-                    <Card.Title>No. of Days Absent</Card.Title>
-                    <div>
+                <Col
+                  md={4}
+                  className="d-flex align-items-center"
+                  style={{ minHeight: "8rem" }}
+                >
+                  <Card className="shadow-sm text-center w-100 border">
+                    <Card.Title className="m-0">Absent</Card.Title>
+                    <Card.Body>
                       {attendance ? (
                         <>
-                          <p>{attendance.absent}</p>
+                          <p className="m-0">{attendance.absent}</p>
                         </>
                       ) : (
-                        <p>Loading attendance...</p>
+                        <p className="m-0">Loading attendance...</p>
                       )}
-                    </div>
+                    </Card.Body>
                   </Card>
                 </Col>
-                <Col md={3}>
-                  <Card className="shadow-sm text-center">
-                    <Card.Title>No. of Working Days</Card.Title>
-                    <div>
+                <Col
+                  md={4}
+                  className="d-flex align-items-center"
+                  style={{ minHeight: "8rem" }}
+                >
+                  <Card className="shadow-sm text-center w-100 border">
+                    <Card.Title className="m-0">Working Days</Card.Title>
+                    <Card.Body>
                       {attendance ? (
                         <>
-                          <p>{attendance.working_days}</p>
+                          <p className="m-0">{attendance.working_days}</p>
                         </>
                       ) : (
-                        <p>Loading attendance...</p>
+                        <p className="m-0">Loading attendance...</p>
+                      )}
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+              <Row className="d-flex justify-content-between g-2">
+                <Col md={6}>
+                  <Card className="border shadow-sm rounded d-flex flex-column p-2"></Card>
+                </Col>
+                <Col md={6}>
+                  <Card className="border shadow-sm rounded d-flex flex-column p-2">
+                    <div className="notification-title">
+                      <h5>Notifications</h5>
+                    </div>
+                    <div className="notification-content">
+                      {Array.isArray(notifications) &&
+                      notifications.length > 0 ? (
+                        <ul
+                          className="p-0"
+                          style={{ fontSize: "0.8rem", listStyleType: "none" }}
+                        >
+                          {notifications.slice(0, 5).map((notification) => (
+                            <li key={notification.id}>
+                              <p className="p-0 m-0">
+                                {notification.body.length > 50
+                                  ? `${notification.body.slice(0, 50)}...`
+                                  : notification.body}
+                              </p>
+                              <p>{notification.date}</p>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p>No Data</p>
                       )}
                     </div>
                   </Card>
@@ -187,7 +356,7 @@ export default function StudentsPage() {
                 <Col>
                   <Card className="shadow-lg p-2 table-responsive">
                     {Array.isArray(holiday) && holiday.length > 0 ? (
-                      <Table bordered hover rounded>
+                      <Table bordered hover>
                         <thead className="table-warning">
                           <tr>
                             <th>Title</th>
@@ -211,7 +380,12 @@ export default function StudentsPage() {
                   </Card>
                 </Col>
                 <Col>
-                  <Card className="shadow-sm d-flex justify-content-center align-items-center">
+                  <Card
+                    className="shadow-sm 
+                  d-flex 
+                  justify-content-center 
+                  align-items-center"
+                  >
                     <Calendar
                       className="custom-calendar"
                       onChange={setDate}

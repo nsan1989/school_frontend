@@ -18,6 +18,8 @@ import { IoIosLogOut } from "react-icons/io";
 import { PiExam } from "react-icons/pi";
 import { CiMoneyCheck1 } from "react-icons/ci";
 import { GoChecklist } from "react-icons/go";
+import { MdSchedule } from "react-icons/md";
+import { FaRegUserCircle } from "react-icons/fa";
 
 export default function Menu({ children }) {
   Title("Student Portal");
@@ -53,7 +55,7 @@ export default function Menu({ children }) {
 
   return (
     <>
-      <Navbar className="shadow-sm">
+      <Navbar className="shadow-sm position-absolute w-100 bg-light" style={{zIndex:"999"}}>
         <Container fluid>
           {/* Left Content */}
           <div className="leftContent">
@@ -70,7 +72,7 @@ export default function Menu({ children }) {
             </Button>
             <NavbarBrand>
               <Image
-                className="img-fluid"
+                className="img-fluid me-2"
                 src={logo}
                 style={{ width: "48px", height: "48px" }}
               />
@@ -85,20 +87,23 @@ export default function Menu({ children }) {
         </Container>
       </Navbar>
       {/* Sidebar Content */}
-      <div className="d-flex" style={{ height: "100vh" }}>
+      <div className="d-flex" style={{ height: "100vh"}}>
         <div
           style={{
             width: expanded ? "220px" : "60px",
             backgroundColor: "white",
             transition: "width 0.3s ease",
+            marginTop: "4rem"
           }}
           className="d-flex flex-column shadow-lg"
         >
           <Nav className="d-flex flex-column">
             <NavItem to="/dashboard" label="Dashboard" Icon={IoHomeOutline} />
             <NavItem to="/examination" label="Examination" Icon={PiExam} />
+            <NavItem to="/time_table" label="Time Table" Icon={MdSchedule} />
             <NavItem to="/fees" label="Fee" Icon={CiMoneyCheck1} />
             <NavItem to="/curriculums" label="Curriculum" Icon={GoChecklist} />
+            <NavItem to="/profile_info" label="Profile" Icon={FaRegUserCircle} />
           </Nav>
           
         </div>
@@ -107,6 +112,7 @@ export default function Menu({ children }) {
           className="p-3 flex-grow-1"
           style={{
             overflowX: "hidden",
+            marginTop: "4rem"
           }}
         >
           {children}

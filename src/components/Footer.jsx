@@ -11,7 +11,7 @@ import {
   FaInstagram,
   FaWhatsapp,
 } from "react-icons/fa";
-import "../styles/Footer.module.css";
+import "../styles/Footer.css";
 
 export default function Footer() {
   const { schoolInfo, error } = useSchoolInfo();

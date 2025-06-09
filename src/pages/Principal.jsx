@@ -5,7 +5,7 @@ import Title from "../hooks/Title";
 import SlideUp from "../hooks/SlideUp";
 
 import "../styles/Common.css";
-import "../styles/Principal.module.css";
+import "../styles/Principal.css";
 
 import { FaRegUserCircle } from "react-icons/fa";
 
@@ -42,7 +42,7 @@ export default function PrincipalMessage() {
         <Container>
           <SlideUp>
             {adminMessage
-              .filter((message) => message.id === 2)
+              .filter((message) => message.id === 4)
               .map((message, index) => (
                 <Row key={index}>
                   <Col

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Row, Col, Button, Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 export default function HomeWork() {
   const [subjects, setSubjects] = useState([]);
@@ -12,22 +11,32 @@ export default function HomeWork() {
 
   const apiUrl = import.meta.env.VITE_SUBJECT_API_URL;
   const homeWorkUrl = import.meta.env.VITE_HOME_WORK_API_URL;
+  const classHomeWorkBaseUrl = import.meta.env.VITE_HOME_WORK_BASE_URL;
+
+  const handleShow = async (homeworkId) => {
+    await fetchHomeWorks(homeworkId);
+    setShowModal(true);
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
+    setSelectedSubjectId(null);
+  };
 
   // Get subjects
   useEffect(() => {
     const fetchData = async () => {
       const auth_key = localStorage.getItem("auth_key");
-      const id = localStorage.getItem("student_id");
+      const id = parseInt(localStorage.getItem("student_id"));
 
-      const parsedId = parseInt(id);
-      if (isNaN(parsedId)) {
+      if (isNaN(id)) {
         setError("Invalid student ID");
         setLoading(false);
         return;
       }
 
       try {
-        const urlWithParams = `${apiUrl}?id=${parsedId}`;
+        const urlWithParams = `${apiUrl}?id=${id}`;
         const response = await fetch(urlWithParams, {
           method: "GET",
           headers: {
@@ -47,17 +56,16 @@ export default function HomeWork() {
   // To fetch home work contents for each subjects.
   const fetchHomeWorks = async (subjectId) => {
     const auth_key = localStorage.getItem("auth_key");
-    const id = localStorage.getItem("student_id");
+    const id = parseInt(localStorage.getItem("student_id"));
 
-    const parsedId = parseInt(id);
-    if (isNaN(parsedId)) {
+    if (isNaN(id)) {
       setError("Invalid student ID");
       setLoading(false);
       return;
     }
 
     try {
-      const urlWithParams = `${homeWorkUrl}?id=${parsedId}`;
+      const urlWithParams = `${homeWorkUrl}?id=${id}`;
       const response = await fetch(urlWithParams, {
         method: "POST",
         headers: {
@@ -78,30 +86,62 @@ export default function HomeWork() {
 
   return (
     <>
-      <Row className="d-flex g-2">
-        {error && <p className="text-danger">{error}</p>}
+      <Row className="g-3 justify-content-center">
+        {error && <p className="text-danger text-center">{error}</p>}
+
         {Array.isArray(subjects) && subjects.length > 0 ? (
           subjects.map((sub, index) => (
-            <Col key={index}>
-              <Link to="" style={{ textDecoration: "None" }}>
-                <Button
-                  variant="primary"
-                  className="shadow-sm d-flex flex-column align-items-center justify-content-center"
-                  style={{ width: "15rem" }}
-                  onClick={() => {
-                    setSelectedSubjectId(sub.id);
-                    fetchHomeWorks(sub.id);
-                  }}
-                >
-                  <p>{sub.subject_name}</p>
-                </Button>
-              </Link>
+            <Col key={index} xs={12} sm={6} md={4} lg={3}>
+              <div
+                className="shadow-sm rounded-4 p-4 text-center bg-primary hover-shadow"
+                style={{ cursor: "pointer", transition: "0.3s" }}
+                onClick={() => handleShow(sub.id)}
+              >
+                <h5 className="mb-0 text-light">{sub.subject_name}</h5>
+              </div>
             </Col>
           ))
         ) : (
-          <p className="text-center">Content will be updated soon.</p>
+          <Col xs={12}>
+            <p className="text-center text-muted">
+              Content will be updated soon.
+            </p>
+          </Col>
         )}
       </Row>
+      {/* Pop up window */}
+      <Modal show={showModal} onHide={handleClose} centered>
+        <Modal.Header>
+          <Modal.Title>Home Work</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {homeworks.length > 0 ? (
+            <>
+              <div className="d-flex mb-2">
+                <strong>Topic:</strong>&nbsp;
+                <p className="mb-0">{homeworks[0].topic}</p>
+              </div>
+              <div className="d-flex">
+                <strong>File:</strong>&nbsp;
+                <a
+                  href={`${classHomeWorkBaseUrl}${homeworks[0].file_path}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download
+                </a>
+              </div>
+            </>
+          ) : (
+            <p className="text-muted text-center">No homework assigned yet.</p>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

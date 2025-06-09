@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
-import "../styles/Carousel.module.css";
+import "../styles/Carousel.css";
 import blur from "../assets/blur-image.jpeg";
 
 export default function Banner() {
@@ -51,7 +51,7 @@ export default function Banner() {
                   placeholderSrc={blur}
                   effect="blur"
                   className="d-block w-100"
-                  style={{ height: "100vh", objectFit: "cover" }}
+                  style={{ height: "100vh", objectFit: "fill" }}
                   alt={`Slide ${index + 1}`}
                 />
               </Carousel.Item>

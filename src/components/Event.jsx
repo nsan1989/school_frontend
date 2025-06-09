@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Card, Button, Row, Col, Image } from "react-bootstrap";
+import { Card, Button, Row, Col, Image, Modal } from "react-bootstrap";
 
-import "../styles/Event.module.css";
+import "../styles/Event.css";
 import { FaRegUserCircle } from "react-icons/fa";
 
 export default function Event() {
@@ -10,10 +10,22 @@ export default function Event() {
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [images, setImages] = useState([]);
   const [hoveredEventId, setHoveredEventId] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const eventUrl = import.meta.env.VITE_EVENT_API_URL;
   const galleryUrl = import.meta.env.VITE_GALLERY_API_URL;
   const baseUrl = import.meta.env.VITE_GALLERY_BASE_URL;
+
+  const handleShow = (eventId) => {
+    setSelectedEventId(eventId);
+    fetchGallery(eventId);
+    setShowModal(true);
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
+    setSelectedEventId(null);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +99,11 @@ export default function Event() {
                       <FaRegUserCircle style={{ fontSize: "200px" }} />
                     )}
                   </div>
-                  <div className={`overlay ${hoveredEventId === events.id ? "show" : ""}`}>
+                  <div
+                    className={`overlay ${
+                      hoveredEventId === events.id ? "show" : ""
+                    }`}
+                  >
                     <div className="overlay-content">
                       <Card.Title>{events.title}</Card.Title>
                       <Card.Text>
@@ -96,10 +112,7 @@ export default function Event() {
                       <Button
                         variant="outline-light"
                         className="w-100"
-                        onClick={() => {
-                          setSelectedEventId(events.id);
-                          fetchGallery(events.id);
-                        }}
+                        onClick={() => handleShow(events.id)}
                       >
                         View Photos
                       </Button>
@@ -113,26 +126,35 @@ export default function Event() {
           <p>No events available!</p>
         )}
       </Row>
-      {selectedEventId && images.length > 0 && (
-        <div className="mt-5">
-          <h3 className="text-center">Gallery Photos</h3>
-          <Row className="g-4">
-            {images.map((image, index) => (
-              <Col
-                className="d-flex justify-content-center align-items-center"
-                md={3}
-                key={index}
-              >
-                <Image
-                  src={`${baseUrl}${image.photo}`}
-                  alt="Photo"
-                  className="img-fluid"
-                />
-              </Col>
-            ))}
-          </Row>
-        </div>
-      )}
+      <Modal show={showModal} onHide={handleClose} centered>
+        <Modal.Header>
+          <Modal.Title>Gallery Photos</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedEventId && images.length > 0 && (
+            <Row className="g-4">
+              {images.map((image, index) => (
+                <Col
+                  className="d-flex justify-content-center align-items-center"
+                  md={3}
+                  key={index}
+                >
+                  <Image
+                    src={`${baseUrl}${image.photo}`}
+                    alt="Photo"
+                    className="img-fluid"
+                  />
+                </Col>
+              ))}
+            </Row>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

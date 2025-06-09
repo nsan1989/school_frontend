@@ -20,7 +20,7 @@ import Title from "../hooks/Title";
 import FadeInSection from "../hooks/FadeInSection";
 import SlideUp from "../hooks/SlideUp";
 
-import "../styles/Home.module.css";
+import "../styles/Home.css";
 import { FaRegUserCircle } from "react-icons/fa";
 import whyImage from "../assets/why_image.jpeg";
 
@@ -97,7 +97,7 @@ export default function Home() {
           <div className="messageWrapper">
             {error && <p>{error}</p>}
             {adminMessage
-              .filter((message) => message.id === 2)
+              .filter((message) => message.id === 4)
               .map((message, index) => (
                 <Row key={index}>
                   <Col
@@ -131,10 +131,10 @@ export default function Home() {
                       )}
                       <Link
                         to="/principal_message"
-                        style={{ textDecoration: "none", color: "#008000" }}
+                        style={{ textDecoration: "none", color: "#004d00" }}
                       >
                         <Button
-                          style={{ backgroundColor: "#008000", border: "none" }}
+                          style={{ backgroundColor: "#004d00", border: "none" }}
                         >
                           Read More
                         </Button>
@@ -172,7 +172,7 @@ export default function Home() {
               className="fw-bold"
               style={{
                 fontFamily: "Poppins, sans-serif",
-                color: "#004d00"
+                color: "#ffcc00"
               }}
             >
               Why Choose Us?
@@ -189,9 +189,9 @@ export default function Home() {
                   onSelect={(k) => setKey(k)}
                   className="mb-3"
                   justify
-                  style={{ color: "#c2c2c2", textAlign: "justify" }}
+                  style={{ color: "#004d00", textAlign: "justify" }}
                 >
-                  <Tab eventKey="health" title="Health">
+                  <Tab eventKey="health" title="Health" style={{color:"#004d00"}}>
                     The school has qualified and trained Health & Wellness
                     teachers and a Special Educator among its regular staffs.
                     These teachers are RCI (Rehabilitation Council of India)
@@ -199,7 +199,7 @@ export default function Home() {
                     implement the School Health Programme in CBSE Schools and
                     carry out the month-wise modules provided by the UNESCO.
                   </Tab>
-                  <Tab eventKey="transport" title="Transport">
+                  <Tab eventKey="transport" title="Transport" style={{color:"#004d00"}}>
                     The transportation of students is managed by St. Anthony’s
                     School Transporters Union (SASSTU). It provides dedicated
                     transportation for students covering different routes. For
@@ -218,7 +218,7 @@ export default function Home() {
                       </li>
                     </ul>
                   </Tab>
-                  <Tab eventKey="clubs" title="School Clubs">
+                  <Tab eventKey="clubs" title="School Clubs" style={{color:"#004d00"}}>
                     <ul>
                       <li>Eco Club for Mission Life</li>
                       <li>Literary Club</li>
@@ -241,7 +241,7 @@ export default function Home() {
         <Container>
           <div className="row py-3">
               <div className="col-12 text-center d-flex flex-column">
-                <h6>TESTIMONIALS</h6>
+                <h6 style={{color:"#ffcc00"}}>testimonials</h6>
                 <h3 className="fw-bold" style={{color:"#004d00"}}>What People Say</h3>
               </div>
           </div>
