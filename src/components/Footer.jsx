@@ -11,7 +11,7 @@ import {
   FaInstagram,
   FaWhatsapp,
 } from "react-icons/fa";
-import "../styles/Footer.css";
+import "../styles/Footer.module.css";
 
 export default function Footer() {
   const { schoolInfo, error } = useSchoolInfo();
@@ -101,6 +101,12 @@ export default function Footer() {
                   to="/rules&regulations"
                 >
                   Rules & Regulations
+                </Link>
+                <Link
+                  className="footerLink d-block pb-2"
+                  to="/terms&conditions"
+                >
+                  Terms & Conditions
                 </Link>
               </small>
             </div>

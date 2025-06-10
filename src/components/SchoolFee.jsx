@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { Row, Col, Button, Modal, Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Modal, Table } from "react-bootstrap";
 import Title from "../hooks/Title";
 
-import "../styles/SchoolFee.css";
 
 export default function SchoolFees() {
   const [error, setError] = useState(null);

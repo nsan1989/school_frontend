@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Row, Col, Card, Table, Image } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
 
-import "../styles/Profile.css";
+import "../styles/Profile.module.css";
 
 export default function ProfileInfo() {
     const [students, setStudents] = useState([]);

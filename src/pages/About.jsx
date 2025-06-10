@@ -1,6 +1,5 @@
 import { Container } from "react-bootstrap";
 import AboutDetail from "../components/AboutDetail";
-import SchoolCard from "../components/Card";
 import "../styles/Common.css";
 import Title from "../hooks/Title";
 import SlideUp from "../hooks/SlideUp";

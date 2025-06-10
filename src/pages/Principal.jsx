@@ -5,7 +5,7 @@ import Title from "../hooks/Title";
 import SlideUp from "../hooks/SlideUp";
 
 import "../styles/Common.css";
-import "../styles/Principal.css";
+import "../styles/Principal.module.css";
 
 import { FaRegUserCircle } from "react-icons/fa";
 

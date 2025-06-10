@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import parse from "html-react-parser";
 
-import "../styles/RulesContent.css";
+import "../styles/RulesContent.module.css";
 
 export default function RulesContent() {
     const [rules, setRules] = useState([]);

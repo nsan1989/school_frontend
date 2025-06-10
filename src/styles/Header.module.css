@@ -48,14 +48,14 @@ s.accountLogin {
 
 @media screen and (max-width: 768px) {
   .nav-link {
-    color: #654321 !important;
+    color: #004d00 !important;
     position: relative;
     text-decoration: none;
     font-family: "Poppins", sans-serif;
   }
 
   .nav-link span {
-    color: #654321 !important;
+    color: #004d00 !important;
     position: relative;
     text-decoration: none;
     font-family: "Poppins", sans-serif;

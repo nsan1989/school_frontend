@@ -3,7 +3,7 @@ import { Row, Col, Card, Table } from "react-bootstrap";
 import Calendar from "react-calendar";
 
 import "react-calendar/dist/Calendar.css";
-import "../styles/StudentPage.css";
+import "../styles/StudentPage.module.css";
 
 export default function StudentsPage() {
   const [students, setStudents] = useState([]);

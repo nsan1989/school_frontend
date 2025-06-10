@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Row, Col, Image, Modal } from "react-bootstrap";
 
-import "../styles/Event.css";
+import "../styles/Event.module.css";
 import { FaRegUserCircle } from "react-icons/fa";
 
 export default function Event() {

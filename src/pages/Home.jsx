@@ -20,7 +20,7 @@ import Title from "../hooks/Title";
 import FadeInSection from "../hooks/FadeInSection";
 import SlideUp from "../hooks/SlideUp";
 
-import "../styles/Home.css";
+import "../styles/Home.module.css";
 import { FaRegUserCircle } from "react-icons/fa";
 import whyImage from "../assets/why_image.jpeg";
 
@@ -134,7 +134,7 @@ export default function Home() {
                         style={{ textDecoration: "none", color: "#004d00" }}
                       >
                         <Button
-                          style={{ backgroundColor: "#004d00", border: "none" }}
+                          variant="warning"
                         >
                           Read More
                         </Button>
@@ -172,7 +172,7 @@ export default function Home() {
               className="fw-bold"
               style={{
                 fontFamily: "Poppins, sans-serif",
-                color: "#ffcc00"
+                color: "#004d00"
               }}
             >
               Why Choose Us?

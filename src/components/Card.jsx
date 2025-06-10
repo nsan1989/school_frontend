@@ -25,21 +25,21 @@ export default function SchoolCard() {
 
   return (
     <>
-      <Row className="justify-content-evenly">
+      <Row className="justify-content-between">
         {error && <p>{error}</p>}
         {Array.isArray(mission) && mission.length > 0 ? (
           mission.map((missions, index) => (
-            <Col className="m-2 d-flex" md={4} key={index}>
+            <Col className="d-flex" md={4} key={index}>
               <Image
                 className="img-fluid rounded"
                 src={`${baseUrl}${missions.image}`}
-                style={{ width: "96px" }}
+                style={{ width: "6rem" }}
               />
               <div className="ms-3" style={{ alignContent: "start" }}>
                 <Card.Title style={{color:"#ffcc00", fontWeight:"bold", fontSize:"1rem"}}>
                   {missions.title}
                 </Card.Title>
-                <Card.Text style={{color:"#004d00", fontSize:"0.9rem"}}>{missions.content}</Card.Text>
+                <Card.Text style={{color:"#004d00", fontSize:"0.85rem"}}>{missions.content}</Card.Text>
               </div>
             </Col>
           ))

@@ -5,8 +5,6 @@ import { FaGraduationCap } from "react-icons/fa6";
 import { FaHotel } from "react-icons/fa";
 import { FaBusAlt } from "react-icons/fa";
 
-import "../styles/Fee.css";
-
 export default function Fee() {
   return (
     <>

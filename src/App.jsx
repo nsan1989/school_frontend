@@ -31,6 +31,7 @@ import Hostel from "./components/Hostel";
 import TransportFee from "./components/Transport";
 import TimeTables from "./pages/TimeTable";
 import ProfileInfo from "./pages/Profile";
+import TermsConditions from "./pages/Term&Condition";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -70,6 +71,7 @@ const AnimatedRoutes = () => {
       <Route path="/rules&regulations" element={<RulesAndRegulations />} />
       <Route path="/application" element={<Application />} />
       <Route path="/staff" element={<Staff />} />
+      <Route path="/terms&conditions" element={<TermsConditions />} />
       <Route path="/dashboard" element={<Menu><StudentsPage /></Menu>} />
       <Route path="/examination" element={<Menu><Examination /></Menu>} />
       <Route path="/fees" element={<Menu><Fees /></Menu>} />

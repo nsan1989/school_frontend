@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
-import "../styles/Carousel.css";
+import "../styles/Common.css";
 import blur from "../assets/blur-image.jpeg";
 
 export default function Banner() {

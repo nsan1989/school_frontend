@@ -86,29 +86,26 @@ export default function Notes() {
 
   return (
     <>
-      <Row className="g-3 justify-content-center">
-        {error && <p className="text-danger text-center">{error}</p>}
+      {error && <p className="text-danger text-center">{error}</p>}
 
-        {Array.isArray(subjects) && subjects.length > 0 ? (
-          subjects.map((sub, index) => (
-            <Col key={index} xs={12} sm={6} md={4} lg={3}>
-              <div
-                className="shadow-sm rounded-4 p-4 text-center bg-primary hover-shadow"
-                style={{ cursor: "pointer", transition: "0.3s" }}
-                onClick={() => handleShow(sub.id)}
-              >
-                <h5 className="mb-0 text-light">{sub.subject_name}</h5>
-              </div>
-            </Col>
-          ))
-        ) : (
-          <Col xs={12}>
-            <p className="text-center text-muted">
-              Content will be updated soon.
-            </p>
-          </Col>
-        )}
-      </Row>
+      {Array.isArray(subjects) && subjects.length > 0 ? (
+        subjects.map((sub, index) => (
+          <Button
+            className="btn-sm me-2 mb-2 border"
+            key={index}
+            onClick={() => handleShow(sub.id)}
+            style={{
+              cursor: "pointer",
+              transition: "0.3s",
+              width: "12rem"
+            }}
+          >
+            {sub.subject_name}
+          </Button>
+        ))
+      ) : (
+        <p className="text-center text-muted">Content will be updated soon.</p>
+      )}
       {/* Pop up window */}
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header>

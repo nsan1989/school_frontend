@@ -42,8 +42,8 @@ export default function CheckApplication() {
     }
   };
   return (
-    <div className="shadow-sm p-4 rounded">
-      <h4 className="mb-4 text-center" style={{color:"#654321"}}>Check your application status</h4>
+    <div className="shadow-lg p-4 rounded">
+      <h4 className="mb-4 text-center" style={{color:"#004d00"}}>Check your application status</h4>
       <Form onSubmit={handleSubmit}>
         {error && <p>{error}</p>}
         <Row className="d-flex justify-content-center">
@@ -59,7 +59,7 @@ export default function CheckApplication() {
             />
           </Col>
           <Col xs="auto">
-            <Button variant="warning" type="submit">
+            <Button variant="primary" type="submit">
               Check
             </Button>
           </Col>

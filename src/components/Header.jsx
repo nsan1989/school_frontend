@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Container, Image, NavDropdown, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Image,
+  NavDropdown,
+  Button,
+} from "react-bootstrap";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
 import useSchoolInfo from "../hooks/SchoolInfo";
 
-import "../styles/Header.css";
+import "../styles/Header.module.css";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -124,15 +131,14 @@ export default function Header() {
           )}
         </Navbar.Brand>
         <Navbar.Toggle
-          className="ms-auto"
+          className="ms-auto p-0 bg-transparent border-0 shadow-none focus-shadow-none"
           aria-controls="navbarNav"
           onClick={toggleNavbar}
-          style={{ border: "none" }}
         >
           {expanded ? (
-            <FaTimes size={"24px"} color="#654321" />
+            <FaTimes size={"24px"} color="#004d00" />
           ) : (
-            <FaBarsStaggered size={"24px"} color="#654321" />
+            <FaBarsStaggered size={"24px"} color="#004d00" />
           )}
         </Navbar.Toggle>
         <Navbar.Collapse className="justify-content-end">
@@ -190,11 +196,7 @@ export default function Header() {
           </Nav>
           <div className="accountLogin">
             <Link to="/login" target="_blank">
-              <Button
-              className="btn btn-sm btn-success"
-              >
-                Student
-              </Button>
+              <Button className="btn btn-sm btn-warning text-light">Student</Button>
             </Link>
           </div>
         </Navbar.Collapse>

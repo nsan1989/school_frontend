@@ -69,7 +69,7 @@ export default function AboutDetail() {
                     </div>
                   </Col>
                 </Row>
-                <Row className="py-5 mb-3">
+                <Row className="py-5 mb-3 g-3">
                   <Col xs={12} sm={12} md={6} lg={6} xl={6}>
                       <Image className="img-fluid rounded" src={image} />
                   </Col>

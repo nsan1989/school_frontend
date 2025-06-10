@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Row, Col, Form, Button, Image } from "react-bootstrap";
 
 import login_image from "../assets/login_image.svg";
-import "../styles/StudentLogin.css";
+import "../styles/StudentLogin.module.css";
 
 export default function StudentLogin() {
   const [error, setError] = useState(null);
