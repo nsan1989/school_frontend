@@ -12,7 +12,7 @@ export default function Curriculums() {
       <Container>
         <Row className="d-flex flex-column mb-3">
           <Col className="mb-2 border shadow-sm bg-warning rounded" md={12}>
-            <h5>Class Notes</h5>
+            <h5 className="m-0 py-1">Class Notes</h5>
           </Col>
           <Col md={12}>
             <Notes />
@@ -20,7 +20,7 @@ export default function Curriculums() {
         </Row>
         <Row className="d-flex flex-column mb-3">
           <Col className="mb-2 border shadow-sm bg-warning rounded" md={12}>
-            <h5>Home Work</h5>
+            <h5 className="m-0 py-1">Home Work</h5>
           </Col>
           <Col md={12}>
             <HomeWork />
@@ -28,7 +28,7 @@ export default function Curriculums() {
         </Row>
         <Row className="d-flex flex-column">
           <Col className="mb-2 border shadow-sm bg-warning rounded" md={12}>
-            <h5>Online Class</h5>
+            <h5 className="m-0 py-1">Online Class</h5>
           </Col>
           <Col md={12}>
             <Video />

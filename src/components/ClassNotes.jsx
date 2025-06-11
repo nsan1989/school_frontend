@@ -91,7 +91,7 @@ export default function Notes() {
       {Array.isArray(subjects) && subjects.length > 0 ? (
         subjects.map((sub, index) => (
           <Button
-            className="btn-sm me-2 mb-2 border"
+            className="btn-md me-2 mb-2 border"
             key={index}
             onClick={() => handleShow(sub.id)}
             style={{

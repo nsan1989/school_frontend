@@ -10,7 +10,10 @@ export default function Fee() {
     <>
       <Row className="mb-3">
         <Col>
-          <p style={{color:"#004d00"}}>&#42;&nbsp;To view all the fee details select the card below.</p>
+          <p className="m-0 py-1 text-danger">
+            &#42;&nbsp;To access detailed fee information, please select the
+            card below.
+          </p>
         </Col>
       </Row>
       <Row>
@@ -19,9 +22,21 @@ export default function Fee() {
             to="/school_fee"
             className="w-100 text-decoration-none text-dark"
           >
-            <Card className="text-center shadow-lg border-0">
-              <Card.Body className="d-flex flex-column align-items-center justify-content-center">
-                <FaGraduationCap size={48} className="mb-3 text-primary" />
+            <Card
+              className="text-center shadow-lg border-0"
+              style={{
+                background: "rgba(255, 255, 255, 0.3)",
+                backdropFilter: "blur(12px)",
+                webkitBackdropFilter: "blur(12px)",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+              }}
+            >
+              <Card.Body
+                className="d-flex flex-column align-items-center justify-content-center"
+                style={{ color: "#004d00" }}
+              >
+                <FaGraduationCap size={48} className="mb-3" />
                 <Card.Title className="mb-0 fs-5">School Fee</Card.Title>
               </Card.Body>
             </Card>
@@ -32,9 +47,21 @@ export default function Fee() {
             to="/hostel_fee"
             className="w-100 text-decoration-none text-dark"
           >
-            <Card className="text-center shadow-lg border-0">
-              <Card.Body className="d-flex flex-column align-items-center justify-content-center">
-                <FaHotel size={48} className="mb-3 text-primary" />
+            <Card
+              className="text-center shadow-lg border-0"
+              style={{
+                background: "rgba(255, 255, 255, 0.3)",
+                backdropFilter: "blur(12px)",
+                webkitBackdropFilter: "blur(12px)",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+              }}
+            >
+              <Card.Body
+                className="d-flex flex-column align-items-center justify-content-center"
+                style={{ color: "#004d00" }}
+              >
+                <FaHotel size={48} className="mb-3" />
                 <Card.Title className="mb-0 fs-5">Hostel Fee</Card.Title>
               </Card.Body>
             </Card>
@@ -45,9 +72,21 @@ export default function Fee() {
             to="/transport_fee"
             className="w-100 text-decoration-none text-dark"
           >
-            <Card className="text-center shadow-lg border-0">
-              <Card.Body className="d-flex flex-column align-items-center justify-content-center">
-                <FaBusAlt size={48} className="mb-3 text-primary" />
+            <Card
+              className="text-center shadow-lg border-0"
+              style={{
+                background: "rgba(255, 255, 255, 0.3)",
+                backdropFilter: "blur(12px)",
+                webkitBackdropFilter: "blur(12px)",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+              }}
+            >
+              <Card.Body 
+              className="d-flex flex-column align-items-center justify-content-center"
+              style={{color:"#004d00"}}
+              >
+                <FaBusAlt size={48} className="mb-3" />
                 <Card.Title className="mb-0 fs-5">Transport Fee</Card.Title>
               </Card.Body>
             </Card>

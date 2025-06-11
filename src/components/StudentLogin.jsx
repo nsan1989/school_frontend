@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Row, Col, Form, Button, Image } from "react-bootstrap";
 
 import login_image from "../assets/login_image.svg";
-import "../styles/StudentLogin.module.css";
+import "../styles/StudentLogin.css";
 
 export default function StudentLogin() {
   const [error, setError] = useState(null);
@@ -78,7 +78,7 @@ export default function StudentLogin() {
             </Button>
           </Form>
           <div className="bottom-text text-center">
-            <small>Developed by MIS Shija Hospital.</small>
+            <small>&copy;St.Anthony's School, All rights reserved.</small>
           </div>
         </Col>
       </Row>

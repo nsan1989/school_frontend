@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import Title from "../hooks/Title";
 import StudentLogin from "../components/StudentLogin";
 
-import "../styles/login.module.css";
+import "../styles/login.css";
 
 export default function Login() {
   Title("Login");

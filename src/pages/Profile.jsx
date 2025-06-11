@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Row, Col, Image } from "react-bootstrap";
 
-import "../styles/Profile.module.css";
+import "../styles/Profile.css";
 
 export default function ProfileInfo() {
-    const [students, setStudents] = useState([]);
-    const [error, setError] = useState(null);
+  const [students, setStudents] = useState([]);
+  const [error, setError] = useState(null);
 
-    const getStudentApiUrl = import.meta.env.VITE_GET_STUDENT_API_URL;
-    const studentBaseUrl = import.meta.env.VITE_GET_STUDENT_BASE_URL;
+  const getStudentApiUrl = import.meta.env.VITE_GET_STUDENT_API_URL;
+  const studentBaseUrl = import.meta.env.VITE_GET_STUDENT_BASE_URL;
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchStudents = async () => {
       const auth_key = localStorage.getItem("auth_key");
       const id = parseInt(localStorage.getItem("student_id"));
@@ -43,68 +43,115 @@ export default function ProfileInfo() {
     };
 
     fetchStudents();
-    }, [getStudentApiUrl]);
+  }, [getStudentApiUrl]);
 
-    return (
-        <>
-        {error && <p style={{ color: "red" }}>Error: {error}</p>}
+  return (
+    <>
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
 
-        <div className="student-page h-100">
-            <Row className="p-3 d-flex justify-content-evenly h-100 gap-2">
-                <Col md={4} className="shadow-lg rounded p-0">
-                    <div className="profile-data d-flex flex-column">
-                        {students && students.map((student) => (
-                            <div key={student.id}>
-                                <div className="profile-photo profile-background rounded">
-                                    <div key={student.id}>
-                                        <Image className="img-fluid stud_image border p-2" src={`${studentBaseUrl}${student.stud_photo}`} />
-                                    </div>
-                                </div>
-                                <div className="profile-info d-flex flex-column mt-5 px-3">
-                                    <h5>Personal Info</h5>
-                                    <ul style={{listStyleType:"none", paddingLeft:"0px"}}>
-                                        <li>Name:&nbsp;{student.stud_name}</li>
-                                        <li>Gender:&nbsp;{student.gender}</li>
-                                        <li>Class:&nbsp;{student.class_name}</li>
-                                        <li>D.O.B:&nbsp;{student.stud_dob}</li>
-                                        <li>Roll No.:&nbsp;{student.roll_no}</li>
-                                        <li>Section:&nbsp;{student.section_name}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        ))}
+      <div className="student-page h-100">
+        <Row className="p-3 d-flex justify-content-evenly h-100 gap-2">
+          <Col
+            md={4}
+            className="shadow-lg rounded p-0"
+            style={{
+              background: "rgba(242, 242, 242, 0.2)",
+              backdropFilter: "blur(12px)",
+              webkitBackdropFilter: "blur(12px)",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <div className="profile-data d-flex flex-column">
+              {students &&
+                students.map((student) => (
+                  <div key={student.id}>
+                    <div className="profile-photo profile-background rounded">
+                      <div key={student.id}>
+                        <Image
+                          className="img-fluid stud_image border p-2"
+                          src={`${studentBaseUrl}${student.stud_photo}`}
+                        />
+                      </div>
                     </div>
-                </Col>
-                <Col md={7}>
-                    <Row className="d-flex flex-column gap-3 h-100">
-                        <Col className="shadow-lg rounded p-3">
-                            <div className="profile-information">
-                                <h5>Address</h5>
-                                {students && students.map((student) => (
-                                    <ul key={student.id} style={{listStyleType:"none", paddingLeft:"0px"}}>
-                                        <li>State:&nbsp;{student.state_name}</li>
-                                        <li>District:&nbsp;{student.district_name}</li>
-                                        <li>Address:&nbsp;{student.permanent_address}</li>
-                                        <li>Pincode:&nbsp;{student.permanent_pincode}</li>
-                                    </ul>
-                                ))}
-                            </div>
-                        </Col>
-                        <Col className="shadow-lg rounded p-3">
-                            <div className="profile-information">
-                                <h5>School Information</h5>
-                                {students && students.map((student) => (
-                                    <ul key={student.id} style={{listStyleType:"none", paddingLeft:"0px"}}>
-                                        <li>Admission No.:&nbsp;{student.std_adm_no}</li>
-                                        <li>Mode:&nbsp;{student.stud_mode}</li>
-                                    </ul>
-                                ))}
-                            </div>
-                        </Col>
-                    </Row>
-                </Col>
+                    <div
+                      className="profile-info d-flex flex-column mt-5 px-3"
+                      style={{ color: "#004d00" }}
+                    >
+                      <h5>Personal Info</h5>
+                      <ul style={{ listStyleType: "none", paddingLeft: "0px" }}>
+                        <li>Name:&nbsp;{student.stud_name}</li>
+                        <li>Gender:&nbsp;{student.gender}</li>
+                        <li>Class:&nbsp;{student.class_name}</li>
+                        <li>D.O.B:&nbsp;{student.stud_dob}</li>
+                        <li>Roll No.:&nbsp;{student.roll_no}</li>
+                        <li>Section:&nbsp;{student.section_name}</li>
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </Col>
+          <Col md={7}>
+            <Row className="d-flex flex-column gap-3 h-100">
+              <Col
+                className="shadow-lg rounded p-3"
+                style={{
+                  background: "rgba(242, 242, 242, 0.2)",
+                  backdropFilter: "blur(12px)",
+                  webkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+                }}
+              >
+                <div className="profile-information">
+                  <h5 style={{ color: "#004d00" }}>Address</h5>
+                  {students &&
+                    students.map((student) => (
+                      <ul
+                        key={student.id}
+                        style={{
+                          listStyleType: "none",
+                          paddingLeft: "0px",
+                          color: "#004d00",
+                        }}
+                      >
+                        <li>State:&nbsp;{student.state_name}</li>
+                        <li>District:&nbsp;{student.district_name}</li>
+                        <li>Address:&nbsp;{student.permanent_address}</li>
+                        <li>Pincode:&nbsp;{student.permanent_pincode}</li>
+                      </ul>
+                    ))}
+                </div>
+              </Col>
+              <Col
+                className="shadow-lg rounded p-3"
+                style={{
+                  background: "rgba(242, 242, 242, 0.2)",
+                  backdropFilter: "blur(12px)",
+                  webkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+                }}
+              >
+                <div className="profile-information">
+                  <h5 style={{ color: "#004d00" }}>School Information</h5>
+                  {students &&
+                    students.map((student) => (
+                      <ul
+                        key={student.id}
+                        style={{ listStyleType: "none", paddingLeft: "0px", color: "#004d00" }}
+                      >
+                        <li>Admission No.:&nbsp;{student.std_adm_no}</li>
+                        <li>Mode:&nbsp;{student.stud_mode}</li>
+                      </ul>
+                    ))}
+                </div>
+              </Col>
             </Row>
-        </div>
-        </>
-    )
+          </Col>
+        </Row>
+      </div>
+    </>
+  );
 }

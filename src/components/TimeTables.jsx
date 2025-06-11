@@ -70,7 +70,7 @@ export default function TimesTables() {
     <>
       <Row>
         <Col>
-          <h5 className="mb-4">Today's Time Table - {today}</h5>
+          <h5 className="mb-4 fw-bold" style={{color:"#004d00"}}>Today's Time Table - {today}</h5>
         </Col>
       </Row>
       <Row className="g-2">
@@ -79,12 +79,21 @@ export default function TimesTables() {
         ) : (
           todayTimeTable.map((period) => (
             <Col xs={12} sm={12} md={3} lg={3} xl={3} key={period.id}>
-              <Card className="mb-2 h-100 shadow-sm">
-                <Card.Body className="d-flex flex-column">
+              <Card
+                className="mb-2 h-100 shadow-sm"
+                style={{
+                  background: "rgba(255, 255, 255, 0.2)",
+                  backdropFilter: "blur(12px)",
+                  webkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+                }}
+              >
+                <Card.Body className="d-flex flex-column" style={{color:"#004d00"}}>
                   <strong>{period.class_timing_name}:&nbsp;</strong>
-                  <span>Subject -{" "}{period.subject_name}</span>
-                  <span>Teacher -{" "}{period.emp_name}</span>
-                  <span>Section -{" "}{period.section_name}</span>
+                  <span>Subject - {period.subject_name}</span>
+                  <span>Teacher - {period.emp_name}</span>
+                  <span>Section - {period.section_name}</span>
                 </Card.Body>
               </Card>
             </Col>

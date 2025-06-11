@@ -55,10 +55,13 @@ export default function Menu({ children }) {
 
   return (
     <>
-      <Navbar className="shadow-sm position-absolute w-100 bg-light" style={{zIndex:"999"}}>
+      <Navbar
+        className="shadow-sm position-absolute w-100 bg-light"
+        style={{ zIndex: "999" }}
+      >
         <Container fluid>
           {/* Left Content */}
-          <div className="leftContent">
+          <div className="leftContent d-flex">
             <Button
               variant="outline-none"
               onClick={toggleNavbar}
@@ -70,12 +73,17 @@ export default function Menu({ children }) {
                 <FaBarsStaggered size={20} color="#004d00" />
               )}
             </Button>
-            <NavbarBrand>
+            <NavbarBrand className="d-flex align-items-center">
               <Image
                 className="img-fluid me-2"
                 src={logo}
                 style={{ width: "48px", height: "48px" }}
               />
+              &nbsp;
+              <div className="d-flex flex-column" style={{color:"#004d00"}}>
+                <h5 className="m-0 d-none d-md-flex">St. Anthony's School</h5>
+                <small style={{fontSize:"0.8rem"}}>student portel</small>
+              </div>
             </NavbarBrand>
           </div>
           {/* Right Content */}
@@ -87,13 +95,13 @@ export default function Menu({ children }) {
         </Container>
       </Navbar>
       {/* Sidebar Content */}
-      <div className="d-flex" style={{ height: "100vh"}}>
+      <div className="d-flex" style={{ height: "100vh" }}>
         <div
           style={{
             width: expanded ? "220px" : "60px",
             backgroundColor: "white",
             transition: "width 0.3s ease",
-            marginTop: "4rem"
+            marginTop: "4rem",
           }}
           className="d-flex flex-column shadow-lg"
         >
@@ -103,16 +111,20 @@ export default function Menu({ children }) {
             <NavItem to="/time_table" label="Time Table" Icon={MdSchedule} />
             <NavItem to="/fees" label="Fee" Icon={CiMoneyCheck1} />
             <NavItem to="/curriculums" label="Curriculum" Icon={GoChecklist} />
-            <NavItem to="/profile_info" label="Profile" Icon={FaRegUserCircle} />
+            <NavItem
+              to="/profile_info"
+              label="Profile"
+              Icon={FaRegUserCircle}
+            />
           </Nav>
-          
         </div>
         {/* Main Content */}
         <div
           className="p-3 flex-grow-1"
           style={{
             overflowX: "hidden",
-            marginTop: "4rem"
+            marginTop: "4rem",
+            background: "linear-gradient(135deg, #f0f4c3, #dcedc8)",
           }}
         >
           {children}
