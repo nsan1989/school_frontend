@@ -1,0 +1,11 @@
+.card {
+    height: 50vh;
+    background-color: #E6D5C3;
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        height: 50vh;
+        background-color: #E6D5C3;
+    }
+}

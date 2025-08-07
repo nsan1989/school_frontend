@@ -1,0 +1,98 @@
+.courseHeader,
+.aboutHeader,
+.principalHeader,
+.infoHeader,
+.downloadHeader,
+.examinationHeader,
+.notificationHeader,
+.galleryHeader,
+.loginHeader,
+.alumniHeader,
+.contactHeader,
+.newsHeader,
+.rulesHeader,
+.applicationHeader,
+.staffHeader,
+.termsHeader,
+.privacyHeader,
+.refundHeader,
+.pricingHeader,
+.shippingHeader {
+    background: url('../assets/background_new.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 25vh;
+  }
+  
+  .aboutTitle,
+  .aboutTitle,
+  .courseTitle,
+  .principalTitle,
+  .infoTitle,
+  .downloadTitle,
+  .examinationTitle,
+  .notificationTitle,
+  .galleryTitle,
+  .loginTitle,
+  .alumniTitle,
+  .contactTitle,
+  .newsTitle,
+  .rulesTitle,
+  .applicationTitle,
+  .staffTitle,
+  .termsTitle,
+  .privacyTitle,
+  .refundTitle,
+  .pricingTitle,
+  .shippingTitle {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-family: "Open Sans",sans-serif;
+    bottom: 0;
+  }
+  
+  .cardText,
+  .principalMessage {
+    font-family: "Open Sans", sans-serif;
+}
+
+.customHr {
+  border: none;
+  border-top: 2px solid #654321;
+  width: 5vw;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.customHr2 {
+  border: none;
+  border-top: 2px solid #FFFFFF;
+  width: 5vw;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+::placeholder {
+  color: #654321;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 10px !important;
+  height: 10px !important;
+  border: 1px solid #FFD700 !important;
+  border-radius: 10px;
+}
+
+.carousel .carousel-indicators {
+  justify-content: center;
+}
+
+.mobileWrapper {
+    width: 100%;
+    height: auto;
+}

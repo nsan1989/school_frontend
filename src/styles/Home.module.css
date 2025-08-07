@@ -1,0 +1,26 @@
+.featureWrapper,
+.achieveWrapper {
+    background-image: url("../assets/parallex_bg.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.featureContainer,
+.achieveContainer {
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.4);
+}
+
+.noticeHeader,
+.noticeBody {
+    font-family: "Poppins", sans-serif;
+    color: #222222;
+}
+
+.noticeTitle h3,
+.newsTitle h3 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5rem;
+}

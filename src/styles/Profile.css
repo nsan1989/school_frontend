@@ -1,0 +1,23 @@
+.profile-background {
+    min-height: 25vh;
+    background-image: url("../assets/profile_background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.stud_image {
+    margin-bottom: -9vh;
+    width: 7rem; 
+    min-width: 5rem;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+@media (max-width: 767.99px) {
+    .stud_image {
+        margin-bottom: -3rem;
+    }
+}

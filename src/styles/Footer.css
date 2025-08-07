@@ -1,0 +1,27 @@
+.footerWrapper {
+    background-color: #0071BC;
+    color: whitesmoke;
+}
+
+.footerTitle {
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.footerLinks {
+    list-style-type: none;
+    padding-left: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.footerText {
+    text-align: justify left;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+}
+
+.footerLink {
+    text-decoration: none;
+    color: whitesmoke;
+}
