@@ -5,22 +5,22 @@ import { GiOnTarget, GiBookmarklet } from "react-icons/gi";
 
 const cardItems = [
   {
-    title: "Mission & Vision",
+    title: "Vision",
     icon: <GiOnTarget size={"48px"} color="#0071BC" />,
     discription:
-      "The School aims at the broader development of the complete personality of each student.",
+      "Empowering holistic growth through life skills for lifelong well-being.",
   },
   {
-    title: "Discipline",
+    title: "Mission",
     icon: <GiBookmarklet size={"48px"} color="#0071BC" />,
     discription:
-      "Special attention is given to ensure high standard of honesty and discipline in the school.",
+      "A nurturing school for balanced, inclusive, and compassionate growth.",
   },
   {
-    title: "Rules & Regulations",
+    title: "Core Values",
     icon: <FaCheckToSlot size={"40px"} color="#0071BC" />,
     discription:
-      "Candidates must have a sponsor accountable to the Warden/Authority for their conduct and fees.",
+      "Child-centric, passionate, and creative; we value integrity, empathy, collaboration, commitment, and self-awareness.",
   },
 ];
 

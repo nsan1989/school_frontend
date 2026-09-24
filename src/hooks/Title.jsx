@@ -2,7 +2,7 @@ import { useEffect } from "react";
 export default function Title (title)  {
 
     useEffect(() => {
-        document.title = `Concept School | ${title}`;
+        document.title = `St. Anthony School | ${title}`;
     }, [title]);
 
     return null;

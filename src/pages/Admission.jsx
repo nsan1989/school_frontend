@@ -11,6 +11,11 @@ export default function Admission() {
   const nextYear = currentYear + 1;
   return (
     <>
+      <div className="aboutHeader">
+        <div className="aboutTitle">
+          <h1 className="display-5 mt-auto py-3 fw-bold">ADMISSION</h1>
+        </div>
+      </div>
       <Container className="mt-5 py-5">
         <div className="py-2 text-center">
           <p className="m-0">

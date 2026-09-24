@@ -41,7 +41,7 @@ export default function Message() {
           />
         </Col>
         <Col md={6} className="p-3">
-          <div className="founderMessage text-dark fw-bold">
+          <div className="founderMessage fw-bold" style={{color: "#004D00"}}>
             {parse(msg.message_info)}
           </div>
         </Col>

@@ -83,7 +83,7 @@ export default function Home() {
                     lg={8}
                     xl={8}
                     className="d-flex justify-content-center align-items-center"
-                    style={{backgroundColor:"#0071BC"}}
+                    style={{backgroundColor:"#004D00"}}
                   >
                     <div className="principalMessage p-3 text-light" style={{fontFamily: "Poppins sans-serif", fontSize:"0.9rem"}}>
                       {parse(
@@ -164,6 +164,11 @@ export default function Home() {
             </FadeInSection>
           </Container>
         </div>
+      </div>
+      <div className="achieveWrapper">
+        <Container>
+
+        </Container>
       </div>
     </>
   );

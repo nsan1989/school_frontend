@@ -15,6 +15,10 @@ export default function About() {
       </div>
       <div className="aboutContent py-5">
       <Container>
+          <div className="content-header text-center mb-3">
+            <h2 className="fw-bold" style={{color: "#004D00"}}>Welcome to St. Anthony's School</h2>
+            <small style={{color: "#004D00"}}>Inspiring Minds | Bulding Futures</small>
+          </div>
           <SlideUp>
             <AboutDetail />
           </SlideUp>

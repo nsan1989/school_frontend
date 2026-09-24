@@ -20,11 +20,14 @@ const navLinks = [
     dropdown: [
       { name: "About School", path: "/about_school" },
       { name: "Principal Message", path: "/principal_message" },
+      { name: "Rules & Regulations", path: "/rules-&-regulations"},
     ],
   },
   {
     name: "School Info",
     dropdown: [
+      { name: "Staff", path: "/staff" },
+      { name: "Alumni", path: "/alumni" },
       { name: "Downloads", path: "/download" },
       { name: "Gallery", path: "/gallery" },
     ],
@@ -36,6 +39,7 @@ const navLinks = [
       { name: "Course", path: "/course" },
     ],
   },
+  { name: "Public Disclosure", path: "/public-disclosure" },
   { name: "Notification", path: "/notification" },
   { name: "Contact", path: "/contact" },
 ];
@@ -74,8 +78,8 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setNavbarBg("rgba(0, 113, 188, 0.9)");
-        setNavbarLinks("#ffffff");
+        setNavbarBg("rgba(255, 255, 255, 0.9)");
+        setNavbarLinks("#004D00");
       } else {
         setNavbarBg("rgba(0, 0, 0, 0.1)");
         setNavbarLinks("#ffffff");
@@ -101,9 +105,9 @@ export default function Header() {
       expanded={expanded}
       style={{
         transition: "background-color 0.3s ease-in-out",
-        backgroundColor: isSmallScreen ? "#0071BC" : navbarBg,
+        backgroundColor: isSmallScreen ? "#FFFFFF" : navbarBg,
         backdropFilter:
-          !isSmallScreen && navbarBg !== "transparent" ? "blur(1px)" : "none",
+          !isSmallScreen && navbarBg !== "transparent" ? "blur(5px)" : "none",
         boxShadow:
           !isSmallScreen && navbarBg !== "transparent"
             ? "0px 4px 10px rgba(0,0,0,0.1)"
@@ -113,12 +117,21 @@ export default function Header() {
       <Container>
         {error && <p>{error}</p>}
         {info.map((infos, index) => (
-          <Navbar.Brand as={Link} to="/" onClick={closeNavbar} key={index}>
+          <Navbar.Brand
+            as={Link}
+            to="/"
+            onClick={closeNavbar}
+            key={index}
+            className="d-flex align-items-center"
+            style={{ color: navbarLinks }}
+          >
             <Image
               className="img-fluid object-fit-contain"
               src={`${baseUrl}${infos.school_photo}`}
               style={{height:"48px"}}
             />
+            &nbsp;
+            <h2 className="mb-0 fw-bold text-uppercase">St.Anthony's School</h2>
           </Navbar.Brand>
         ))}
         <Navbar.Toggle

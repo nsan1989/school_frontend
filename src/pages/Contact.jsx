@@ -22,9 +22,9 @@ export default function Contact() {
             md={6}
             lg={6}
             xl={6}
-            className="flex-wrap align-content-center mb-3"
+            className="flex-wrap align-content-center"
           >
-            <div style={{ height: "500px", width: "100%" }}>
+            <div style={{ height: "650px", width: "100%" }}>
               <Map />
             </div>
           </Col>
@@ -35,7 +35,7 @@ export default function Contact() {
             lg={6}
             xl={6}
             className="flex-wrap align-content-center p-5 rounded text-light"
-            style={{backgroundColor:"rgba(0, 113, 188, 0.7)"}}
+            style={{backgroundColor:"#004D00"}}
           >
             <ContactForm />
           </Col>

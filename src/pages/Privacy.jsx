@@ -12,12 +12,11 @@ export default function PrivacyPolicy() {
       <Container className="py-5" style={{ fontFamily: "Poppins, sans-sarif" }}>
         <Row>
           <Col className="d-flex flex-column">
-            <h5 className="m-0">Privacy Policy for Concept School Website</h5>
-            <small>Effective Date: May 01, 2025.</small>
+            <h5 className="m-0">Privacy Policy for School Website</h5>
             <p className="mt-2">
-              Concept School ("we", "our", or "us") respects the privacy of
+              St. Anthony's School ("we", "our", or "us") respects the privacy of
               every individual who visits our website
-              (www.conceptschoolimphal.com) (the “Site”). This Privacy Policy
+              (www.stanthonymanipur.org) (the “Site”). This Privacy Policy
               outlines how we collect, use, and protect your personal
               information in accordance with Indian laws, including the
               Information Technology Act, 2000 and the associated Rules.
@@ -178,17 +177,16 @@ export default function PrivacyPolicy() {
               contact:
             </p>
             <ul className="mt-2 ps-0" style={{ listStyleType: "none" }}>
-              <li className="fw-bold">Concept School Imphal,</li>
+              <li className="fw-bold">St. Anthony's School,</li>
               <li>
-                <span className="fw-bold">Address:</span>&nbsp;Koirengei, Near CMC
-                Hospital, 795002.
+                <span className="fw-bold">Address:</span>&nbsp;Chingmeirong - Heingang Road, Imphal - East, Manipur, 795002.
               </li>
               <li>
                 <span className="fw-bold">Email:</span>&nbsp;
-                conceptschoolkoirengei@gmail.com
+                anthonyimp83@gmail.com
               </li>
               <li>
-                <span className="fw-bold">Phone:</span>&nbsp;8794728538
+                <span className="fw-bold">Phone:</span>&nbsp;8413859933
               </li>
             </ul>
           </Col>

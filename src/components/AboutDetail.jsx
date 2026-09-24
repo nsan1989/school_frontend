@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Row, Col, Image } from "react-bootstrap";
 import useSchoolInfo from "../hooks/SchoolInfo";
 import styles from "../styles/aboutDetail.module.css";
+import about_image from "../assets/about_image.jpg";
 
 export default function AboutDetail() {
   const [aboutSchool, setAboutSchool] = useState([]);
@@ -43,7 +44,7 @@ export default function AboutDetail() {
               {schoolInfo?.Image && (
                 <Image
                   className="img-fluid"
-                  src={`${baseUrl}${schoolInfo.Image}`}
+                  src={about_image}
                   alt={schoolInfo.school_name}
                 />
               )}

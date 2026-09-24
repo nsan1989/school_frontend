@@ -17,7 +17,8 @@
 .privacyHeader,
 .refundHeader,
 .pricingHeader,
-.shippingHeader {
+.shippingHeader,
+.disclosureHeader {
     background: url('../assets/background_new.jpg');
     background-position: center;
     background-size: cover;
@@ -45,7 +46,8 @@
   .privacyTitle,
   .refundTitle,
   .pricingTitle,
-  .shippingTitle {
+  .shippingTitle,
+  .disclosureHeader {
     height: 100%;
     display: flex;
     align-items: center;

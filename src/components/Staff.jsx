@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Image, Card } from "react-bootstrap";
+import { Image, Card, Container } from "react-bootstrap";
+import Title from "../hooks/Title";
 
 export default function Staff() {
   const [staff, setStaff] = useState([]);
@@ -22,41 +23,80 @@ export default function Staff() {
     };
     fetchData();
   }, []);
+
+  Title("Staff");
+
   return (
     <>
-      {error && <p>{error}</p>}
-      {Array.isArray(staff) && staff.length > 0 ? (
-        staff.map((staffs, index) => (
-          <div className="staffContent" key={index}>
-            <Card
-              className="p-2"
-              style={{
-                width: "18rem",
-                backgroundColor: "#E6D5C3",
-                color: "#3D2B1F",
-              }}
-            >
-              <Card.Body className="text-center">
-                <div className="cardImage text-center">
-                  {imageError ? (
-                    <FaRegUserCircle size={120} />
-                  ) : (
-                    <Image
-                      className="img-fluid"
-                      src={`${baseUrl}${staffs.staff_photo}`}
-                      alt="Teacher"
-                      onError={() => setImageError(true)}
-                    />
-                  )}
-                </div>
-                <Card.Title className="py-2">{staffs.staff_name}</Card.Title>
-              </Card.Body>
-            </Card>
-          </div>
-        ))
-      ) : (
-        <p>Staff is not available!</p>
-      )}
+      <div className="staffHeader">
+        <div className="staffTitle">
+          <h1 className="display-5 mt-auto py-3 fw-bold">STAFF</h1>
+        </div>
+      </div>
+      <div
+        className="staffContent py-5"
+      >
+        <div className="content-title text-center mb-5">
+          <h3 className="fw-bold" style={{color: "#004D00"}}>List of all staff</h3>
+        </div>
+        <Container
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "1rem",
+          }}
+        >
+          {error && <p>{error}</p>}
+          {Array.isArray(staff) && staff.length > 0 ? (
+            staff.map((staffs, index) => (
+              <div key={index} style={{ width: "18rem", height: "22rem" }}>
+                <Card
+                  className="p-2"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "#E6D5C3",
+                    color: "#FFF",
+                  }}
+                >
+                  <Card.Body
+                    className="text-center"
+                    style={{ display: "flex", flexDirection: "column" }}
+                  >
+                    <div
+                      className="cardImage text-center"
+                      style={{
+                        height: "180px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {imageError ? (
+                        <FaRegUserCircle size={120} />
+                      ) : (
+                        <Image
+                          className="img-fluid"
+                          style={{ height: "160px", objectFit: "contain" }}
+                          src={`${baseUrl}${staffs.staff_photo}`}
+                          alt="Teacher"
+                          onError={() => setImageError(true)}
+                        />
+                      )}
+                    </div>
+                    <Card.Title className="py-2">
+                      {staffs.staff_name}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
+              </div>
+            ))
+          ) : (
+            <p>Staff is not available!</p>
+          )}
+        </Container>
+      </div>
     </>
   );
 }

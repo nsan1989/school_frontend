@@ -37,6 +37,10 @@ import PricingPolicy from "./pages/Pricing";
 import ShippingDelivery from "./pages/Shipping&Delivery";
 import Transaction from "./components/TransactionHistory";
 import TransactionSuccess from "./components/PaymentSuccess";
+import RulesPage from "./pages/rules";
+import Staff from "./components/Staff";
+import AlumniPage from "./pages/Alumni";
+import DisclosurePage from "./pages/disclosure";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -63,9 +67,13 @@ const AnimatedRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/about_school" element={<About />} />
       <Route path="/principal_message" element={<PrincipalMessage />} />
+      <Route path="/rules-&-regulations" element={<RulesPage />} />
+      <Route path="/staff" element={<Staff />} />
+      <Route path="/alumni" element={<AlumniPage />} />
       <Route path="/download" element={<Download />} />
       <Route path="/admission" element={<Admission />} />
       <Route path="/course" element={<Course />} />
+      <Route path="/public-disclosure" element={<DisclosurePage />} />
       <Route path="/notification" element={<Notification />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/gallery" element={<Gallery />} />

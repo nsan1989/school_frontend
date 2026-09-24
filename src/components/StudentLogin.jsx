@@ -77,7 +77,7 @@ export default function StudentLogin() {
             </Button>
           </Form>
           <div className="bottom-text text-center text-light">
-            <small>&copy; 2025 Concept School, All rights reserved.</small>
+            <small>&copy;St. Anthony's School, All rights reserved.</small>
           </div>
         </Col>
       </Row>

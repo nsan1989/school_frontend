@@ -33,23 +33,32 @@ export default function Footer() {
             </div>
             <div className="footerText py-2">
               <small>
-                Concept Higher Secondary fosters scientific curiosity and
-                excellence, providing quality education per NEP 2020.
-              </small>&nbsp;
+                St. Anthony’s High School, established in 1983, is a
+                CBSE-affiliated co-educational institution in Manipur.
+              </small>
+              &nbsp;
               <Link className="footerLink" to="/about_school">
                 <small className="text-warning">Read More</small>
               </Link>
             </div>
             <div className="others">
-                <h5 className="mb-0">Apply Here</h5>
+              <h5 className="mb-0">External Links</h5>
               <div className="footerLinks d-flex py-2">
                 <small>
-                  <Link className="footerLink d-block pb-2" to="https://www.bsem.nic.in/" target="_blank">
+                  <Link
+                    className="footerLink d-block pb-2"
+                    to="https://www.bsem.nic.in/"
+                    target="_blank"
+                  >
                     BOSEM
                   </Link>
                 </small>
                 <small>
-                  <Link className="footerLink d-block ps-3 pb-2" to="https://www.cohsem.nic.in/" target="_blank">
+                  <Link
+                    className="footerLink d-block ps-3 pb-2"
+                    to="https://www.cohsem.nic.in/"
+                    target="_blank"
+                  >
                     COHSEM
                   </Link>
                 </small>
@@ -89,23 +98,14 @@ export default function Footer() {
             </div>
             <div className="footerLinks py-2">
               <small>
+                <Link className="footerLink d-block pb-2" to="/rules-&-regulations">
+                  Rules & Regulations
+                </Link>
+                <Link className="footerLink d-block pb-2" to="/terms&conditions">
+                  Terms & Conditions
+                </Link>
                 <Link className="footerLink d-block pb-2" to="/privacy&policy">
                   Privacy & Policy
-                </Link>
-                <Link className="footerLink d-block pb-2" to="/refundpolicy">
-                  Refund Policy
-                </Link>
-                <Link className="footerLink d-block pb-2" to="/pricingpolicy">
-                  Pricing Policy
-                </Link>
-                <Link className="footerLink d-block pb-2" to="/shipping&delivery">
-                  Shipping & Delivery
-                </Link>
-                <Link
-                  className="footerLink d-block pb-2"
-                  to="/terms&conditions"
-                >
-                  Terms & Conditions
                 </Link>
               </small>
             </div>
@@ -172,7 +172,8 @@ export default function Footer() {
         <Row>
           <Col className="flex-wrap align-content-center text-center">
             <small>
-              &copy; 2025 Concept School, All Right Reserved.
+              Copyright © 2025 St. Anthony School, All Rights Reserved. Designed
+              and Developed by MIS Shija Hospital.
             </small>
           </Col>
         </Row>

@@ -32,8 +32,8 @@ export default function Feature() {
                 <Image src={`${baseUrl}${features.icon}`} style={{ maxWidth: "56px", height: "auto" }} />
               </div>
               <div className="featureContent d-flex flex-column">
-                <div className="my-3 fw-bold" style={{fontFamily: "Open Sans, sans-serif", fontSize: "1rem", color: "#0099cc"}}>{features.title}</div>
-                <div style={{fontFamily: "Poppins, sans-serif", fontSize: "0.9rem", color: "#000"}}>{features.content}</div>
+                <div className="my-3 fw-bold" style={{fontFamily: "Open Sans, sans-serif", fontSize: "1rem", color: "#004D00"}}>{features.title}</div>
+                <div style={{fontFamily: "Poppins, sans-serif", fontSize: "0.9rem", color: "#004D00"}}>{features.content}</div>
               </div>
             </Col>
           ))

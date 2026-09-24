@@ -42,7 +42,7 @@ export default function Notice() {
             </div>
           ))
       ) : (
-        <p>We are in the process of updating this content. Stay tuned!</p>
+        <p>No content available!</p>
       )}
     </>
   );
