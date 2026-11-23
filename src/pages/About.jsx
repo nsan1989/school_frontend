@@ -13,11 +13,13 @@ export default function About() {
           <h1 className="display-5 mt-auto py-3 fw-bold">ABOUT US</h1>
         </div>
       </div>
-      <div className="aboutContent py-5">
-      <Container>
-          <div className="content-header text-center mb-3">
-            <h2 className="fw-bold" style={{color: "#004D00"}}>Welcome to St. Anthony's School</h2>
-            <small style={{color: "#004D00"}}>Inspiring Minds | Bulding Futures</small>
+      <div className="aboutContent about-page-content py-5">
+        <Container>
+          <div className="about-welcome text-center mb-4">
+            <h2 className="fw-bold">
+              Welcome to St. Anthony's School
+            </h2>
+            <small>Inspiring Minds | Bulding Futures</small>
           </div>
           <SlideUp>
             <AboutDetail />

@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
 import Title from "../hooks/Title";
+import "../styles/Common.css";
 
 export default function RulesPage() {
   Title("Rules & Regulations");
@@ -12,10 +13,10 @@ export default function RulesPage() {
           </h1>
         </div>
       </div>
-      <Container className="mb-3">
-        <div className="rulesContent">
-          <h3 className="fw-bold" style={{color: "#004D00"}}>Rules & Regulations:</h3>
-          <ul style={{color: "#004D00"}}>
+      <Container className="rules-page py-4 mb-3">
+        <section className="rules-section mb-4">
+          <h2 className="rules-section-title fw-bold">Rules &amp; Regulations</h2>
+          <ul className="rules-list">
             <li>
               Special attention is given to ensure high standard of honesty and
               discipline among the students.
@@ -76,18 +77,20 @@ export default function RulesPage() {
             </li>
             <li>Students must not attend school when they are unwell.</li>
           </ul>
-        </div>
-        <div>
-          <p className="text-danger">
+        </section>
+        <aside className="rules-note mb-4">
+          <p className="mb-0">
             Note: Any matter pertaining to breach of School Rules and
             Regulations by the students will be taken up by the Discipline
             Committee. It will then be forwarded to the Principal who will
             initiate corrective measures for the students.
           </p>
-        </div>
-        <div className="rulesContent">
-          <h3 className="fw-bold" style={{color: "#004D00"}}>Hostel Rooms Rules & Regulation :</h3>
-          <ul style={{color: "#004D00"}}>
+        </aside>
+        <section className="rules-section">
+          <h2 className="rules-section-title fw-bold">
+            Hostel Rooms Rules &amp; Regulation
+          </h2>
+          <ul className="rules-list">
             <li>
               Each boarder must maintain utmost cleanliness and make sure the
               floor under his/her bed and cupboard is clean. Waste paper and
@@ -118,7 +121,7 @@ export default function RulesPage() {
               their own badminton racquets/table tennis bat and balls.
             </li>
           </ul>
-        </div>
+        </section>
       </Container>
     </>
   );

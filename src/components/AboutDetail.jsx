@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Row, Col, Image } from "react-bootstrap";
 import useSchoolInfo from "../hooks/SchoolInfo";
-import styles from "../styles/aboutDetail.module.css";
 import about_image from "../assets/about_image.jpg";
 
 export default function AboutDetail() {
@@ -36,14 +35,14 @@ export default function AboutDetail() {
 
   return (
     <>
-      {error && <p>{error}</p>}
-      <div>
+      {error && <p className="about-load-error">{error}</p>}
+      <div className="about-detail">
         <Row className="py-3 d-flex justify-content-center mb-3">
-          <Col xs={12} sm={12} md={8} lg={8} xl={8} className="d-flex justify-content-center">
-            <div className="aboutImage">
+          <Col xs={12} md={10} lg={9} className="d-flex justify-content-center">
+            <div className="about-image-frame">
               {schoolInfo?.Image && (
                 <Image
-                  className="img-fluid"
+                  className="about-school-image img-fluid"
                   src={about_image}
                   alt={schoolInfo.school_name}
                 />
@@ -52,8 +51,11 @@ export default function AboutDetail() {
           </Col>
         </Row>
         <Row>
-          <Col>
-            <div dangerouslySetInnerHTML={{ __html: aboutSchool }} />
+          <Col xs={12} lg={10} className="mx-auto">
+            <div
+              className="about-description"
+              dangerouslySetInnerHTML={{ __html: aboutSchool }}
+            />
           </Col>
         </Row>
       </div>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { Image, Card, Container } from "react-bootstrap";
+import { Image, Card, Col, Container, Row } from "react-bootstrap";
+import { FaRegUserCircle } from "react-icons/fa";
 import Title from "../hooks/Title";
+import "../styles/Common.css";
 
 export default function Staff() {
   const [staff, setStaff] = useState([]);
@@ -33,69 +35,44 @@ export default function Staff() {
           <h1 className="display-5 mt-auto py-3 fw-bold">STAFF</h1>
         </div>
       </div>
-      <div
-        className="staffContent py-5"
-      >
-        <div className="content-title text-center mb-5">
-          <h3 className="fw-bold" style={{color: "#004D00"}}>List of all staff</h3>
-        </div>
-        <Container
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "1rem",
-          }}
-        >
-          {error && <p>{error}</p>}
-          {Array.isArray(staff) && staff.length > 0 ? (
-            staff.map((staffs, index) => (
-              <div key={index} style={{ width: "18rem", height: "22rem" }}>
-                <Card
-                  className="p-2"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    backgroundColor: "#E6D5C3",
-                    color: "#FFF",
-                  }}
-                >
-                  <Card.Body
-                    className="text-center"
-                    style={{ display: "flex", flexDirection: "column" }}
-                  >
-                    <div
-                      className="cardImage text-center"
-                      style={{
-                        height: "180px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
+      <div className="staffContent py-5">
+      <div className="staff-heading text-center mb-5">
+        <h3 className="fw-bold" style={{ color: "#004D00" }}>
+          List of all staff
+        </h3>
+      </div>
+      <Container>
+        {error && <p className="text-danger text-center">{error}</p>}
+        {Array.isArray(staff) && staff.length > 0 ? (
+          <Row className="g-4 justify-content-center">
+            {staff.map((staffs, index) => (
+              <Col key={index} xs={12} sm={6} md={4} lg={3}>
+                <Card className="staff-card h-100">
+                  <Card.Body className="d-flex flex-column align-items-center text-center">
+                    <div className="staff-card-image">
                       {imageError ? (
-                        <FaRegUserCircle size={120} />
+                        <FaRegUserCircle size={112} />
                       ) : (
                         <Image
-                          className="img-fluid"
-                          style={{ height: "160px", objectFit: "contain" }}
+                          className="staff-photo"
                           src={`${baseUrl}${staffs.staff_photo}`}
-                          alt="Teacher"
+                          alt={staffs.staff_name || "School staff member"}
                           onError={() => setImageError(true)}
                         />
                       )}
                     </div>
-                    <Card.Title className="py-2">
+                    <Card.Title className="staff-card-name mt-3 mb-0">
                       {staffs.staff_name}
                     </Card.Title>
                   </Card.Body>
                 </Card>
-              </div>
-            ))
-          ) : (
-            <p>Staff is not available!</p>
-          )}
-        </Container>
+              </Col>
+            ))}
+          </Row>
+        ) : (
+          <p className="text-center">Staff is not available!</p>
+        )}
+      </Container>
       </div>
     </>
   );
