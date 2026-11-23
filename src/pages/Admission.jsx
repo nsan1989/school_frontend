@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Register from "../components/Register";
@@ -7,8 +8,7 @@ import "../styles/Common.css";
 
 export default function Admission() {
   Title("Admission");
-  const currentYear = new Date().getFullYear();
-  const nextYear = currentYear + 1;
+  const [sessionName, setSessionName] = useState("");
   return (
     <>
       <div className="aboutHeader">
@@ -17,6 +17,33 @@ export default function Admission() {
         </div>
       </div>
       <Container className="mt-5 py-5">
+        <div
+          className="disclaimer-content mb-3"
+          style={{
+            width: "100%",
+            boxSizing: "border-box",
+            padding: "clamp(12px, 3vw, 20px)",
+            border: "1px solid #e0a800",
+            borderRadius: "8px",
+            backgroundColor: "#fff8dc",
+            color: "#212529",
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              fontSize: "clamp(14px, 2vw, 16px)",
+              lineHeight: 1.6,
+              textAlign: "left",
+            }}
+          >
+            Parents are requested to submit the printed copy of the registration
+            done to the school's office within 5 days from the day on which the
+            online registration is made, whereas extention of day/days may be
+            there equivalent to the number holidays/closures falling within the
+            5 days window period.
+          </p>
+        </div>
         <div className="py-2 text-center">
           <p className="m-0">
             To check your application status{" "}
@@ -39,10 +66,10 @@ export default function Admission() {
             xl={8}
             style={{ backgroundColor: "#202060" }}
           >
-            <h3 className="text-center text-white mb-4">
-              {currentYear} - {nextYear}
-            </h3>
-            <Register />
+            {sessionName && (
+              <h3 className="text-center text-white mb-4">{sessionName}</h3>
+            )}
+            <Register onSessionChange={setSessionName} />
           </Col>
         </Row>
       </Container>

@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { Form, Button, Row, Col, Image } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 
-import paymentImage from "../assets/concept_payment.jpg";
-
-export default function Register() {
+export default function Register({ onSessionChange }) {
   const [filters, setFilters] = useState({
     session: [],
     category: [],
@@ -11,6 +9,7 @@ export default function Register() {
     district: [],
   });
   const [message, setMessage] = useState(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     session: "",
@@ -30,6 +29,7 @@ export default function Register() {
     mother_annual_income: "",
     parent_phone: "",
     parent_alt_phone: "",
+    class_id: "",
     present_address: "",
     present_district_id: "",
     present_state_id: "",
@@ -40,7 +40,7 @@ export default function Register() {
     permanent_pincode: "",
     previous_school_name: "",
     previous_school_board: "",
-    photo: null,
+    sameAsPresent: false,
   });
 
   const fetchData = async (url, key) => {
@@ -52,7 +52,10 @@ export default function Register() {
       const data = await response.json();
       if (Array.isArray(data.msg)) {
         setFilters((prev) => ({ ...prev, [key]: data.msg }));
-      } 
+        if (key === "session" && onSessionChange) {
+          onSessionChange(data.msg[0]?.session_name || "");
+        }
+      }
     } catch (error) {
       setError(error.message);
     }
@@ -70,7 +73,14 @@ export default function Register() {
     if (dob) {
       const birthDate = new Date(dob);
       const today = new Date();
-      const age = today.getFullYear() - birthDate.getFullYear();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const birthdayPassed =
+        today.getMonth() > birthDate.getMonth() ||
+        (today.getMonth() === birthDate.getMonth() &&
+          today.getDate() >= birthDate.getDate());
+      if (!birthdayPassed) {
+        age -= 1;
+      }
 
       setFormData({
         ...formData,
@@ -87,14 +97,13 @@ export default function Register() {
       ...formData,
       [name]: value,
     });
-  };
 
-  // Handle file input
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      photo: e.target.files[0],
-    }));
+    if (name === "session" && onSessionChange) {
+      const selectedSession = filters.session.find(
+        (session) => String(session.id) === value,
+      );
+      onSessionChange(selectedSession?.session_name || "");
+    }
   };
 
   //Handle form submission
@@ -103,32 +112,44 @@ export default function Register() {
     setLoading(true);
     setMessage(null);
 
-    const formDataObject = new FormData();
-    if (formData.photo) {
-      formDataObject.append("photo", formData.photo);
-    }
-
-    const { photo, ...formDataWithoutPhoto } = formData;
-
-    formDataObject.append("data", JSON.stringify(formDataWithoutPhoto));
+    const { sameAsPresent, ...registrationData } = formData;
+    const payload = {
+      ...registrationData,
+      session: Number(registrationData.session),
+      age: String(registrationData.age),
+      parent_alt_phone: registrationData.parent_alt_phone || "",
+      social_category_id: Number(registrationData.social_category_id),
+      class_id: Number(registrationData.class_id),
+      present_district_id: Number(registrationData.present_district_id),
+      present_state_id: Number(registrationData.present_state_id),
+      permanent_district_id: Number(registrationData.permanent_district_id),
+      permanent_state_id: Number(registrationData.permanent_state_id),
+    };
 
     try {
       const response = await fetch(import.meta.env.VITE_REGISTER_API_URL, {
         method: "POST",
-        body: formDataObject,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       });
       const responseText = await response.text();
       let result;
       try {
         result = JSON.parse(responseText);
-      } catch (jsonError) {
+      } catch {
         setMessage("Error: Invalid response from server.");
         return;
       }
 
       if (response.ok) {
-        setMessage("Successfully registered!");
-      } 
+        setMessage(result.status === "success"
+          ? "Successfully registered!"
+          : `Registration failed: ${result.msg || "Please try again."}`);
+      } else {
+        setMessage(result.msg || "Registration failed. Please try again.");
+      }
     } catch (error) {
       setMessage("Network error, please try again later.");
     } finally {
@@ -177,11 +198,12 @@ export default function Register() {
       <Col xs={12} md={10}>
         <Form onSubmit={handleSubmit} className="p-3 shadow rounded">
           <h4 className="mb-4 text-center">Student Registration</h4>
+          {error && <div className="text-danger text-center mb-3">{error}</div>}
 
           {/* Session Selection */}
           <Form.Group controlId="formSession">
             <Form.Label>Session</Form.Label>
-            <Form.Select required name="session" onChange={handleInputChange}>
+            <Form.Select required name="session" value={formData.session} onChange={handleInputChange}>
               <option value="">Select Session</option>
               {filters.session.map((s) => (
                 <option key={s.id} value={s.id}>
@@ -244,6 +266,19 @@ export default function Register() {
               </Form.Group>
             </Col>
             <Col md={6}>
+              <Form.Group controlId="formClass">
+                <Form.Label>Class</Form.Label>
+                <Form.Control
+                  required
+                  type="number"
+                  min="1"
+                  name="class_id"
+                  value={formData.class_id}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col md={6}>
               <Form.Group controlId="formAadhaar">
                 <Form.Label>Aadhaar Number</Form.Label>
                 <Form.Control
@@ -300,6 +335,9 @@ export default function Register() {
                   required
                   type="text"
                   name="phone_no"
+                  minLength={10}
+                  maxLength={10}
+                  pattern="[0-9]{10}"
                   onChange={handleInputChange}
                 />
               </Form.Group>
@@ -377,6 +415,9 @@ export default function Register() {
                   name="present_pincode"
                   value={formData.present_pincode}
                   onChange={addressChange}
+                  minLength={6}
+                  maxLength={6}
+                  pattern="[0-9]{6}"
                 />
               </Form.Group>
             </Col>
@@ -407,6 +448,7 @@ export default function Register() {
                 <Form.Select
                   required
                   name="permanent_state_id"
+                  value={formData.permanent_state_id}
                   onChange={addressChange}
                   disabled={formData.sameAsPresent}
                 >
@@ -450,6 +492,9 @@ export default function Register() {
                   value={formData.permanent_pincode}
                   onChange={addressChange}
                   disabled={formData.sameAsPresent}
+                  minLength={6}
+                  maxLength={6}
+                  pattern="[0-9]{6}"
                 />
               </Form.Group>
             </Col>
@@ -479,7 +524,8 @@ export default function Register() {
             <Form.Label>Father's Annual Income</Form.Label>
             <Form.Control
               required
-              type="text"
+              type="number"
+              min="0"
               name="father_annual_income"
               onChange={handleInputChange}
             />
@@ -506,7 +552,8 @@ export default function Register() {
             <Form.Label>Mother's Annual Income</Form.Label>
             <Form.Control
               required
-              type="text"
+              type="number"
+              min="0"
               name="mother_annual_income"
               onChange={handleInputChange}
             />
@@ -519,63 +566,28 @@ export default function Register() {
                   required
                   type="text"
                   name="parent_phone"
+                  minLength={10}
+                  maxLength={10}
+                  pattern="[0-9]{10}"
                   onChange={handleInputChange}
                 />
               </Form.Group>
             </Col>
             <Col md={6}>
               <Form.Group controlId="formParentAltPhone">
-                <Form.Label>Alternate Phone</Form.Label>
+                <Form.Label>Alternate Phone Number (Optional)</Form.Label>
                 <Form.Control
-                  required
                   type="text"
                   name="parent_alt_phone"
+                  value={formData.parent_alt_phone}
+                  minLength={10}
+                  maxLength={10}
+                  pattern="[0-9]{10}"
                   onChange={handleInputChange}
                 />
               </Form.Group>
             </Col>
           </Row>
-
-          {/* Payment Scanner */}
-          <Row className="py-3">
-            <Col md={6}>
-              <div className="paymentScanner text-center">
-                <Image className="img-fluid" src={paymentImage} style={{width:"auto", height:"104px"}} />
-              </div>
-            </Col>
-            <Col md={6} className="d-flex align-items-center">
-              <div className="paymentInstructions">
-                <ul style={{ listStyleType: "none", paddingLeft: "0" }}>
-                  <li>
-                    &#42;&nbsp;
-                    <small>
-                      Kindly scan the QR code to proceed with the payment.
-                    </small>
-                  </li>
-                  &nbsp;
-                  <li>
-                    &#42;&nbsp;
-                    <small>
-                      Please capture and upload a screenshot of the payment
-                      information.
-                    </small>
-                  </li>
-                </ul>
-              </div>
-            </Col>
-          </Row>
-
-          {/* Photo Upload */}
-          <Form.Group controlId="formPhoto">
-            <Form.Label>Upload Photo</Form.Label>
-            <Form.Control
-              required
-              type="file"
-              name="photo"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
-          </Form.Group>
 
           {/* Submit Button */}
           <div className="py-3 text-center">

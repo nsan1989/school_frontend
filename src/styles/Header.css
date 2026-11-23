@@ -42,28 +42,91 @@
   box-shadow: none;
 }
 
-s.accountLogin {
+.accountLogin {
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
 }
 
-@media screen and (max-width: 767.99px) {
-  .navbar.container {
+.navbar {
+  width: 100%;
+}
+
+.school-logo {
+  width: auto;
+  max-height: 48px;
+  height: 48px;
+}
+
+.school-name {
+  font-size: clamp(1rem, 2.2vw, 1.5rem);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 767.98px) {
+  .navbar {
+    max-height: none;
+  }
+
+  .navbar > .container {
     margin-top: 0 !important;
     border-radius: 0 !important;
   }
 
-  .nav-link {
-    color: #fff !important;
-    position: relative;
-    text-decoration: none;
-    font-family: "Poppins", sans-serif;
+  .navbar-brand {
+    max-width: calc(100% - 48px);
   }
 
-  .nav-link span {
-    color: #fff !important;
-    position: relative;
-    text-decoration: none;
-    font-family: "Poppins", sans-serif;
+  .school-logo {
+    max-height: 40px;
+    height: 40px;
+  }
+
+  .school-name {
+    font-size: clamp(0.8rem, 4vw, 1.15rem);
+  }
+
+  .navbar-collapse {
+    width: 100%;
+  }
+
+  .navbar-collapse .navbar-nav {
+    width: 100%;
+  }
+
+  .navbar-collapse .nav-link,
+  .navbar-collapse .dropdown-toggle,
+  .navbar-collapse .dropdown-toggle span {
+    color: #004d00 !important;
+  }
+
+  .navbar-collapse .nav-link,
+  .navbar-collapse .dropdown {
+    width: 100%;
+  }
+
+  .navbar-collapse .dropdown-menu {
+    width: 100%;
+  }
+
+  .accountLogin {
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .accountLogin a,
+  .accountLogin .btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 359.98px) {
+  .school-logo {
+    max-height: 36px;
+    height: 36px;
+  }
+
+  .school-name {
+    font-size: 0.75rem;
   }
 }

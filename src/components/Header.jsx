@@ -126,12 +126,11 @@ export default function Header() {
             style={{ color: navbarLinks }}
           >
             <Image
-              className="img-fluid object-fit-contain"
+              className="school-logo img-fluid object-fit-contain"
               src={`${baseUrl}${infos.school_photo}`}
-              style={{height:"48px"}}
             />
             &nbsp;
-            <h2 className="mb-0 fw-bold text-uppercase">St.Anthony's School</h2>
+            <h2 className="school-name mb-0 fw-bold text-uppercase">St.Anthony's School</h2>
           </Navbar.Brand>
         ))}
         <Navbar.Toggle

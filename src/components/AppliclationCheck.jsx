@@ -68,39 +68,83 @@ export default function CheckApplication() {
       {message && <p className="mt-3 text-center text-info">{message}</p>}
 
       {userInfo !== null && Object.keys(userInfo).length > 0 && (
-        <div className="mt-3 p-3 border rounded bg-light">
-          <h5>Application Details:</h5>
-          <p>
-            <strong>Form No:</strong> {userInfo["Form-No"]}
-          </p>
-          <p>
-            <strong>Student Name:</strong> {userInfo.student_name}
-          </p>
-          <p>
-            <strong>Aadhaar No:</strong> {userInfo.student_aadhaar_no}
-          </p>
-          <p>
-            <strong>Gender:</strong> {userInfo.gender}
-          </p>
-          <p>
-            <strong>Date of Birth:</strong> {userInfo.dob}
-          </p>
-          <p>
-            <strong>Age:</strong> {userInfo.age}
-          </p>
-          <p>
-            <strong>State:</strong> {userInfo.State}
-          </p>
-          <p>
-            <strong>District:</strong> {userInfo.district}
-          </p>
-          <p>
-            <strong>Permanent Address:</strong> {userInfo.permanent_address}
-          </p>
-          <p>
-            <strong>Phone No:</strong> {userInfo.phone_no}
-          </p>
-        </div>
+        <>
+          <style>
+            {`
+              @media print {
+                body * {
+                  visibility: hidden;
+                }
+                #application-details,
+                #application-details * {
+                  visibility: visible;
+                }
+                #application-details {
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  border: 0 !important;
+                  background: #fff !important;
+                }
+              }
+            `}
+          </style>
+          <div id="application-details" className="mt-3 p-3 border rounded bg-light">
+            <h5>Application Details:</h5>
+            <p>
+              <strong>Form No:</strong> {userInfo["Form-No"]}
+            </p>
+            <p>
+              <strong>Student Name:</strong> {userInfo.student_name}
+            </p>
+            <p>
+              <strong>Aadhaar No:</strong> {userInfo.student_aadhaar_no}
+            </p>
+            <p>
+              <strong>Gender:</strong> {userInfo.gender}
+            </p>
+            <p>
+              <strong>Category:</strong> {userInfo["General-Category"]}
+            </p>
+            <p>
+              <strong>Class:</strong> {userInfo.class_name}
+            </p>
+            <p>
+              <strong>Date of Birth:</strong> {userInfo.dob}
+            </p>
+            <p>
+              <strong>Age:</strong> {userInfo.age} years
+            </p>
+            <p>
+              <strong>Father's Name:</strong> {userInfo.father_name}
+            </p>
+            <p>
+              <strong>Mother's Name:</strong> {userInfo.mother_name}
+            </p>
+            <p>
+              <strong>State:</strong> {userInfo.State}
+            </p>
+            <p>
+              <strong>District:</strong> {userInfo.Disctrict}
+            </p>
+            <p>
+              <strong>Permanent Address:</strong> {userInfo.permanent_address}
+            </p>
+            <p>
+              <strong>Phone No:</strong> {userInfo.phone_no}
+            </p>
+          </div>
+          <div className="text-center mt-3">
+            <Button
+              variant="warning"
+              type="button"
+              onClick={() => window.print()}
+            >
+              Print Application
+            </Button>
+          </div>
+        </>
       )}
     </div>
   );

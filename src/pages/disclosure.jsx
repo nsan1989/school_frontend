@@ -13,6 +13,7 @@ import affidavit from "../assets/affidavit.pdf";
 import result from "../assets/result.pdf";
 import fees from "../assets/fees.pdf";
 import planner from "../assets/planner.pdf";
+import mandatory from "../assets/mandatory.pdf";
 
 export default function DisclosurePage() {
   Title("Public Disclosure");
@@ -28,6 +29,12 @@ export default function DisclosurePage() {
             <h3 className="fw-bold" style={{color: "#004D00"}}>List of all Certificates</h3>
         </div>
         <div className="row g-4">
+          <div className="mandatoryContent col-md-6 col-lg-4">
+            <h5 style={{color: "#004D00"}}>Mandatory Certificate</h5>
+            <a href={mandatory} target="_blank" rel="noopener noreferrer">
+              View PDF
+            </a>
+        </div>
         <div className="disclosureContent col-md-6 col-lg-4">
             <h5 style={{color: "#004D00"}}>Affiliation Certificate</h5>
             <a href={affiliation} target="_blank" rel="noopener noreferrer">
